@@ -1,5 +1,5 @@
-# run: conda env create --file nlp_practices_env.yml
-name: nlp_practices
+# run: conda env create --file environments.yml
+name: environments
 channels:
   - conda-forge
   - defaults
