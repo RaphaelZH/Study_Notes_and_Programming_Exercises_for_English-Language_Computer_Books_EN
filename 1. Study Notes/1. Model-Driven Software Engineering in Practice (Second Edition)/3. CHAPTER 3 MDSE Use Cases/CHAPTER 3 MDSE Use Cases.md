@@ -1,5 +1,3 @@
-# CHAPTER 3 MDSE Use Cases
-
 MDSE’s most prominent application is *software development automation*, or model-driven development (MDD). MDD automates as much of the software lifecycle as possible, from requirements to deployment. However, MDSE’s potential applications extend far beyond this scope. MDD is merely a part of the MDSE iceberg (Figure 3.1). In this context, MD(S)E can be interpreted as *Model-Driven Everything*, implying that the MDSE approach can be applied to any software engineering task.
 
 ![Figure 3.1: MDD is just the most visible side of MDSE.](../3.%20CHAPTER%203%20MDSE%20Use%20Cases/Figures/Figure%203.1.png)
