@@ -5,7 +5,7 @@ Author:
 
 MDSE’s most prominent application is *software development automation*, or model-driven development (MDD). MDD automates as much of the software lifecycle as possible, from requirements to deployment. However, MDSE’s potential applications extend far beyond this scope. MDD is merely a part of the MDSE iceberg (Figure 3.1). In this context, MD(S)E can be interpreted as *Model-Driven Everything*, implying that the MDSE approach can be applied to any software engineering task.
 
-![Figure 3.1: MDD is just the most visible side of MDSE.](./3.%20CHAPTER%203%20MDSE%20Use%20Cases//Figures/Figure%203.1.png)
+![Figure 3.1: MDD is just the most visible side of MDSE.](./03.%20CHAPTER%203%20MDSE%20Use%20Cases/Figures/Figure%203.1.png)
 
 ## 3.1 AUTOMATING SOFTWARE DEVELOPMENT
 
@@ -13,7 +13,7 @@ Software development automation starts with a high-level representation of desir
 
 Following an MDSE approach, the running application can be obtained through model transformations that progressively refine the software description until an executable version is reached. Figure 3.2 illustrates an MDSE-based development process. In each phase, models are (semi)-automatically generated using model-to-model transformations, utilizing models from the previous phase (and manually completing or refining when necessary). In the final step, the final code is generated through a model-to-text transformation from the design models.
 
-![Figure 3.2: A typical MDSE-based software development process.](./3.%20CHAPTER%203%20MDSE%20Use%20Cases//Figures/Figure%203.2.png)
+![Figure 3.2: A typical MDSE-based software development process.](./03.%20CHAPTER%203%20MDSE%20Use%20Cases/Figures/Figure%203.2.png)
 
 Introducing MDSE into the development process offers several advantages. It bridges the communication gap between requirements/analysis and implementation by capturing and organizing the system’s understanding. This facilitates discussions among team members and integrates new ones. MDE increases communication effectiveness between stakeholders and the productivity of the development team due to (partial) automation. It also reduces the number of defects in the final code inadvertently introduced by developers.
 
@@ -39,7 +39,7 @@ DDD shares aspects with MDSE, arguing for using models to represent domain knowl
 
 MDSE complements DDD (Figure 5.1) by enhancing developer benefits from domain models. Model transformation and code generation techniques allow domain models to represent the domain (structure, rules, dynamics) and generate the actual software system to manage it.
 
-![Figure 5.1: Relationship between DDD and MDD.](./5.%20CHAPTER%205%20Integration%20of%20MDSE%20in%20your%20Development%20Process/Figures/Figure%205.1.png)
+![Figure 5.1: Relationship between DDD and MDD.](./05.%20CHAPTER%205%20Integration%20of%20MDSE%20in%20your%20Development%20Process/Figures/Figure%205.1.png)
 
 ---
 
@@ -52,5 +52,57 @@ MDSE complements DDD (Figure 5.1) by enhancing developer benefits from domain mo
 > * **Relationship with MDSE**: Shares the use of models for domain knowledge representation and platform-independent development.
 > 
 > * **MDSE’s Role in DDD**: Enhances DDD by providing techniques like model transformation and code generation to implement the domain model.
+
+---
+
+## 5.5 TEST-DRIVEN DEVELOPMENT AND MDSE
+
+Test-driven development (TDD) follows the test-first philosophy, where developers write executable test cases to check new functionality. If a test fails, the developer writes the code to pass it, effectively forcing implementation. Once the code passes the full test suite, it’s refactored, and the process repeats.
+
+MDSE can be integrated into TDD at two levels: when models are used for code generation to automatically derive system implementation, and when they aren’t.
+
+---
+
+> **Résumé** :
+> 
+> * **TDD Definition**: Developers write executable test cases to check new functionality before writing the code.
+> 
+> * **TDD Process**: Write a test, write code to pass the test, refactor the code, and repeat.
+> 
+> * **MDSE Integration**: MDSE can be integrated into TDD when models are used for code generation or not.
+
+---
+
+### 5.5.1 MODEL-DRIVEN TESTING
+
+Models can be used to derive tests for system implementations to ensure they behave as expected. This is known as model-based testing. As shown in Figure 5.2, a test generation strategy is applied at the model level to derive a set of tests, which are then translated into executable tests for the system’s technological platform. Testing strategies depend on the model and test type. For instance, constraint solvers generate test cases for static models, while model checkers generate relevant execution traces for dynamic models.
+
+![Figure 5.2: Model-based testing.](./05.%20CHAPTER%205%20Integration%20of%20MDSE%20in%20your%20Development%20Process/Figures/Figure%205.2.png)
+
+---
+
+> **Résumé** :
+> 
+> * **Model-Based Testing**: Models are used to derive tests for system implementations to ensure expected behavior.
+> 
+> * **Test Generation**: A test generation strategy is applied at the model level to derive a set of tests, which are then translated into executable tests.
+> 
+> * **Testing Strategies**: Depend on the model and test type, such as constraint solvers for static models and model checkers for dynamic models.
+
+---
+
+### 5.5.2 TEST-DRIVEN MODELING
+
+When software is derived from models, testing the code is unnecessary (assuming complete code generation and trust in the code generator). Instead, test the models. Some test-driven development approaches for modeling artifacts follow this philosophy: before developing a model excerpt, write the model test to evaluate new functionality at the modeling level. Model the new functionality and execute the test to ensure model correctness. This practice requires executable models (see Chapter 3). Chapter 10 discusses tools for exhaustive and systematic model testing and validation.
+
+---
+
+> **Résumé** :
+> 
+> * **Testing Focus**: Test the models instead of the generated code.
+> 
+> * **Model Testing Approach**: Write model tests before developing model excerpts to ensure correctness.
+> 
+> * **Model Requirement**: Executable models are necessary for this approach.
 
 ---
