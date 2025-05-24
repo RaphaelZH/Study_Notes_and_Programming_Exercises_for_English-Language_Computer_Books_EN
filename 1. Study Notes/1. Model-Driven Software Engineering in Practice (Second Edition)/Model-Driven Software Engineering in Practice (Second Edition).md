@@ -45,13 +45,13 @@ MDSE complements DDD (Figure 5.1) by enhancing developer benefits from domain mo
 
 > **Résumé** :
 > 
-> * **DDD Principles**: Focus on the domain and uses models for complex designs.
+> * Domain-driven design (DDD) focuses on the domain and uses models for complex designs.
 > 
-> * **DDD’s Focus**: Emphasizes representing the problem domain effectively using models.
+> * DDD emphasizes domain representation for developers and experts.
 > 
-> * **Relationship with MDSE**: Shares the use of models for domain knowledge representation and platform-independent development.
+> * DDD and MDSE share similarities in domain modeling and platform-independent development.
 > 
-> * **MDSE’s Role in DDD**: Enhances DDD by providing techniques like model transformation and code generation to implement the domain model.
+> * MDSE enhances DDD by using model transformation and code generation to represent and manage domain models.
 
 ---
 
@@ -65,11 +65,9 @@ MDSE can be integrated into TDD at two levels: when models are used for code gen
 
 > **Résumé** :
 > 
-> * **TDD Definition**: Developers write executable test cases to check new functionality before writing the code.
+> * Test-driven development (TDD) involves writing executable test cases before code, ensuring functionality is implemented and refactored iteratively.
 > 
-> * **TDD Process**: Write a test, write code to pass the test, refactor the code, and repeat.
-> 
-> * **MDSE Integration**: MDSE can be integrated into TDD when models are used for code generation or not.
+> * MDSE integrates with TDD at two levels: code generation and non-generation.
 
 ---
 
