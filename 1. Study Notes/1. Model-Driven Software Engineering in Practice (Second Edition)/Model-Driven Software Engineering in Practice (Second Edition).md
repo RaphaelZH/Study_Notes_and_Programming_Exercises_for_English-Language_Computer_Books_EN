@@ -81,11 +81,9 @@ Models can be used to derive tests for system implementations to ensure they beh
 
 > **Résumé** :
 > 
-> * **Model-Based Testing**: Models are used to derive tests for system implementations to ensure expected behavior.
+> * Model-based testing uses models to derive tests for system implementations, ensuring expected behavior.
 > 
-> * **Test Generation**: A test generation strategy is applied at the model level to derive a set of tests, which are then translated into executable tests.
-> 
-> * **Testing Strategies**: Depend on the model and test type, such as constraint solvers for static models and model checkers for dynamic models.
+> * Test generation strategies, tailored to model and test type, generate test cases or execution traces.
 
 ---
 
@@ -97,10 +95,8 @@ When software is derived from models, testing the code is unnecessary (assuming 
 
 > **Résumé** :
 > 
-> * **Testing Focus**: Test the models instead of the generated code.
+> * Testing software derived from models is unnecessary; instead, test the models.
 > 
-> * **Model Testing Approach**: Write model tests before developing model excerpts to ensure correctness.
-> 
-> * **Model Requirement**: Executable models are necessary for this approach.
+> * Test-driven development approaches for modeling artifacts involve writing model tests before developing model excerpts to evaluate new functionality.
 
 ---
