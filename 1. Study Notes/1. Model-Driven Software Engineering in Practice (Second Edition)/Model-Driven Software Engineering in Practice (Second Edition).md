@@ -155,11 +155,11 @@ Modeling languages describe the real world at a specific level of abstraction an
 
 In software engineering, you typically model orthogonal system aspects using different modeling languages or a multi-viewpoint modeling language with various diagram types.
 
-System aspects are classified into static (structural) and dynamic aspects. Static aspects describe the main ingredients and their relations, while dynamic aspects describe their behavior in terms of actions, events, and interactions. Separating static and dynamic aspects is usually a good practice.
+System aspects are classified into *static (or structural)* and dynamic aspects. Static aspects describe the main ingredients and their relations, while *dynamic* aspects describe their behavior in terms of actions, events, and interactions. Separating static and dynamic aspects is usually a good practice.
 
 Languages often include extensibility mechanisms that allow designers to define new modeling elements, which is common in GPLs that need specialization for specific domains or problems. This can lead to domain-specific languages developed from general-purpose ones.
 
-A well-known example is UML, the GPL proposed by OMG within the MDA framework. UML is a general-purpose language with various diagrams and extension mechanisms. Several extensions have become standard languages, such as SysML and SoaML. Therefore, UML can be seen as a family of languages in three senses: as a whole with enough variability to be considered a group of languages, paired with correlated languages like OCL that improve its expressive power, and accompanied by domain-specific profiles defined around it.
+A well-known example is UML, the GPL proposed by OMG within the MDA framework. UML is a general-purpose language with various diagrams and extension mechanisms. Several extensions have become standard languages, such as SysML and SoaML. Therefore, UML can be seen as a *family of languages (or language suite)* in three senses: as a whole with enough variability to be considered a group of languages, paired with correlated languages like OCL that improve its expressive power, and accompanied by domain-specific profiles defined around it.
 
 ---
 
@@ -172,5 +172,41 @@ A well-known example is UML, the GPL proposed by OMG within the MDA framework. U
 > * Languages often include extensibility mechanisms for defining new modeling elements, leading to domain-specific languages.
 > 
 > * UML, proposed by OMG within the MDA framework, is a general-purpose language with various diagrams and extension mechanisms. It can be seen as a family of languages due to its variability, correlated languages like OCL, and domain-specific profiles.
+
+---
+
+## 6.3 GENERAL-PURPOSE VS. DOMAIN-SPECIFIC MODELING LANGUAGES
+
+As mentioned in Chapter 1, modeling languages are classified as domain-specific or general-purpose.
+
+*Domain-Specific Modeling Languages (DSMLs, or DSLs for short)* are languages designed for specific domains, contexts, or companies to support people describing things in those domains.
+
+*General-Purpose Modeling Languages (GPMLs, or GMLs/GPLs)* are modeling notations applicable to any sector or domain.
+
+However, this distinction is not so deterministic and well-defined. Deciding whether a language is a DSL or GPL is not a binary choice. For instance, UML and similar languages seem to belong to the latter group, since they can model any domain. However, if we consider modeling in general, UML is a DSL tailored to the specification of (mainly object-oriented) software systems.
+
+The decision on whether to use UML (or any other GPL) or a DSL for a modeling project is significant. While UML may not be the best option for certain domains (like user interaction design), a domain-specific language tailored to that domain can produce better results. However, discussing DSL vs. UML without acknowledging UML’s many-domains language (MDL) nature is misleading. UML may not be suitable for all domains, but it can be easily applied to model many of them successfully.
+
+UML may have flaws, but we’re aware of them. Creating an unnecessary DSL may repeat UML’s mistakes. Avoid reinventing the wheel. If your DSL resembles UML, consider using a subset of UML and avoiding new "almost-UML" notations.
+
+On the theoretical side, concerning GPLs, one may wonder if a language to be a GPL must also be Turing-complete. If not, it means it’s not truly "general," since it can’t solve every problem. However, this interpretation is rarely considered, and the definition of a language as GPL or DSL is more a matter of practice or subjectivity. Martin Fowler clarifies that even deciding whether a set of concepts (or operations) is a language or just a set of operations within another language is a matter of perspective.
+
+---
+
+> **Résumé** :
+> 
+> * Modeling languages are classified as domain-specific or general-purpose.
+> 
+> * Domain-Specific Modeling Languages (DSMLs, or DSLs for short) are designed for specific domains to support people describing things in those domains.
+> 
+> * General-Purpose Modeling Languages (GPMLs, or GMLs/GPLs) are applicable to any sector or domain.
+> 
+> * The distinction between DSL and GPL is not binary, as seen with UML, which can model any domain but is tailored to software systems.
+> 
+> * UML, while not suitable for all domains, can be effectively applied to model many domains successfully.
+> 
+> * Avoid reinventing the wheel by using a subset of UML instead of creating a new DSL.
+> 
+> * The definition of a language as GPL or DSL is subjective, with the distinction often based on practical considerations rather than strict theoretical criteria.
 
 ---
