@@ -150,3 +150,27 @@ Modeling languages describe the real world at a specific level of abstraction an
 > * Modeling languages describe the real world at a specific level of abstraction. Their semantics, which defines the meaning of concepts, can be denotational (using mathematical expressions), operational (through an interpreter), or translational (mapping to another language).
 
 ---
+
+## 6.2 MULTI-VIEW MODELING AND LANGUAGE EXTENSIBILITY
+
+In software engineering, you typically model orthogonal system aspects using different modeling languages or a multi-viewpoint modeling language with various diagram types.
+
+System aspects are classified into static (structural) and dynamic aspects. Static aspects describe the main ingredients and their relations, while dynamic aspects describe their behavior in terms of actions, events, and interactions. Separating static and dynamic aspects is usually a good practice.
+
+Languages often include extensibility mechanisms that allow designers to define new modeling elements, which is common in GPLs that need specialization for specific domains or problems. This can lead to domain-specific languages developed from general-purpose ones.
+
+A well-known example is UML, the GPL proposed by OMG within the MDA framework. UML is a general-purpose language with various diagrams and extension mechanisms. Several extensions have become standard languages, such as SysML and SoaML. Therefore, UML can be seen as a family of languages in three senses: as a whole with enough variability to be considered a group of languages, paired with correlated languages like OCL that improve its expressive power, and accompanied by domain-specific profiles defined around it.
+
+---
+
+> **Résumé** :
+> 
+> * Software engineering models orthogonal system aspects using different modeling languages or multi-viewpoint modeling languages.
+> 
+> * System aspects are classified into static and dynamic aspects. Static aspects describe ingredients and relations, while dynamic aspects describe behavior.
+> 
+> * Languages often include extensibility mechanisms for defining new modeling elements, leading to domain-specific languages.
+> 
+> * UML, proposed by OMG within the MDA framework, is a general-purpose language with various diagrams and extension mechanisms. It can be seen as a family of languages due to its variability, correlated languages like OCL, and domain-specific profiles.
+
+---
