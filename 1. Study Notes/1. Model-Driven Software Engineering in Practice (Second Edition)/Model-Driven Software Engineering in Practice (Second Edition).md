@@ -234,3 +234,60 @@ UML, a unifying language for software modeling, has a long history of merges and
 > * UML, a software modeling language, emerged in 1996 from the fusion of Booch, Rumbaugh, and Jacobson’s approaches. Despite criticisms, it remains a crucial tool for software modeling.
 
 ---
+
+### 6.4.1 DESIGN PRACTICES
+
+UML facilitates system design and promotes good design practices. It offers several features:
+
+* Integrated and orthogonal models: UML’s diagrams share symbols and allow cross-referencing between modeling artifacts.
+- Modeling at different levels of detail: UML allows designers to choose the right amount of information to include in diagrams based on the purpose and phase of development.
+
+* Extensibility: UML provides features for designing customized modeling languages.
+
+* Pattern-based design: UML includes well-known design patterns defined by the Gang of Four.
+
+The following sections describe a few details about UML modeling to provide an overview of a typical GPL.
+
+---
+
+> **Résumé** :
+> 
+> * UML enables system design through integrated models, customizable modeling languages, and pattern-based design, allowing designers to choose the right level of detail for their needs.
+> 
+> * UML modeling details are provided to overview a typical GPL.
+
+---
+
+### 6.4.2 STRUCTURE DIAGRAMS (OR STATIC DIAGRAMS)
+
+*Structure diagrams* describe the elements in a system being modeled. They’re used extensively in documenting software systems at two main levels.
+
+* The system’s *conceptual items* of interest. This level of design describes the domain and system in terms of concepts and their associations. Typical diagrams describe this part.
+
+	1. *Class diagram*: Describes a system’s structure using classes, attributes, and relationships. 
+
+	2. *Composite structure diagram*: Describes the internal structure of a class and its collaborations. They use a syntax similar to class diagrams but exploit containment and connections between items. The core concepts are *parts* (i.e., roles played at runtime by instances), *ports* (i.e., interaction points connecting classifiers), and *connectors* (undirected edges connecting entities through ports).
+
+	3. *Object diagram*: A view of the structure of example instances of modeled concepts at a specific point in time, possibly including property values. Similar to class diagrams, objects are identified by underlined names. They can also be identified by the tuple object name and class name, the simple object name, or the class they’re instantiated from. The respective notations are as follows:
+
+		`objectName:ClassName` or `objectName` or `:ClassName`
+
+* The *architectural representation* of the system. This level of design describes the system’s architectural organization and structure. It typically consists of reuse and deployment-oriented information, based on the conceptual modeling done in the previous step. The diagrams in this part of the design include:
+
+	1. *Component diagram*: Describes how a software system is divided into components and their dependencies. In UML, a component is a distributable piece of implementation, including software code and other information, that implements a subsystem.
+
+	2. *Package diagram*: Describes how a system is divided into logical groupings called packages in UML, along with their dependencies.
+
+	3. *Deployment diagram*: Describes how software artifacts are deployed on hardware in systems’ implementations.
+
+---
+
+> **Résumé** :
+> 
+> * Structure diagrams describe system elements, used extensively in software documentation.
+> 
+> * The system’s conceptual items are described using class, composite structure, and object diagrams. These diagrams illustrate the system’s structure, internal class structure, and example instances of modeled concepts.
+> 
+> * The architectural design level describes the system’s organization and structure, including component, package, and deployment diagrams.
+
+---
