@@ -348,3 +348,43 @@ UML has been criticized for being verbose, cumbersome, incoherent, and unusable 
 > * UML, despite criticisms of verbosity and complexity, remains the reference design language for software engineers. OMG is simplifying the UML specification in response to these criticisms.
 
 ---
+
+## 6.5 UML EXTENSIBILITY: THE MIDDLE WAY BETWEEN GPL AND DSL
+
+If the development requires unusual modeling, consider using a domain-specific language. Instead of a new DSL, extend the existing GPL to fit the needs. For example, we show UML’s extensibility features.
+
+UML offers various extension features: stereotypes, constraints, tagged values, and profiles. The *Profile diagram*, focusing on language extensibility, shows stereotypes as classes and profiles as packages at the metamodel level. The extension relationship indicates the metamodel element a stereotype extends. This section provides an overview of these extensibility options.
+
+---
+
+> **Résumé** :
+> 
+> * Consider extending existing GPLs with domain-specific languages for unusual modeling needs.
+> 
+> * UML offers extensibility through stereotypes, constraints, tagged values, and profiles. The Profile diagram shows stereotypes as classes and profiles as packages.
+
+---
+
+### 6.5.1 STEREOTYPES
+
+Stereotypes extend meta-classes by defining additional semantics for their concept. A model element can be stereotyped multiple ways. To define a stereotype, specify the following properties:
+
+* *Base metaclasses*, defining the elements to be extended.
+
+* *Constraints*, defining the special rules and semantics that apply to this specialization, characterizing the stereotype in terms of semantics.
+
+* *Tagging values*, defining zero or more values the stereotype may need for proper functioning.
+
+* *Icon*, defining the visual appearance of stereotyped elements in the diagrams.
+
+One doubt may arise: why not use standard sub-classing instead of stereotyping? Subclassing defines a special relation between items in the same model, while stereotypes define new modeling concepts used to create models. Stereotypes are typically used to define (i) additional semantic constraints, (ii) semantics outside UML’s scope (e.g., metadata for code generators), or (iii) new modeling concepts with specific behavior or properties that will often be reused.
+
+---
+
+> **Résumé** :
+> 
+> * Stereotypes extend metaclasses by defining additional semantics for their concept. A model element can be stereotyped multiple ways, specifying base metaclasses, constraints, tagging values, and an icon.
+> 
+> * Stereotypes define new modeling concepts, while subclassing defines a special relation between items in the same model. Stereotypes are used for additional semantic constraints, semantics outside UML’s scope, and new modeling concepts.
+
+---
