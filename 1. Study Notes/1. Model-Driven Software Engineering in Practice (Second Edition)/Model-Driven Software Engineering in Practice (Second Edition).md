@@ -264,7 +264,7 @@ The following sections describe a few details about UML modeling to provide an o
 
 * The system’s *conceptual items* of interest. This level of design describes the domain and system in terms of concepts and their associations. Typical diagrams describe this part.
 
-	1. *Class diagram*: Describes a system’s structure using classes, attributes, and relationships. 
+	1. *Class diagram*: Describes a system’s structure using classes, attributes, and relationships. Classes can be described at different levels of detail.
 
 	2. *Composite structure diagram*: Describes the internal structure of a class and its collaborations. They use a syntax similar to class diagrams but exploit containment and connections between items. The core concepts are *parts* (i.e., roles played at runtime by instances), *ports* (i.e., interaction points connecting classifiers), and *connectors* (undirected edges connecting entities through ports).
 
@@ -286,8 +286,65 @@ The following sections describe a few details about UML modeling to provide an o
 > 
 > * Structure diagrams describe system elements, used extensively in software documentation.
 > 
-> * The system’s conceptual items are described using class, composite structure, and object diagrams. These diagrams illustrate the system’s structure, internal class structure, and example instances of modeled concepts.
+> * The system’s conceptual items are described using class, composite structure, and object diagrams. These diagrams illustrate the system’s structure, internal class composition, and example instances of modeled concepts.
 > 
 > * The architectural design level describes the system’s organization and structure, including component, package, and deployment diagrams.
+
+---
+
+### 6.4.3 BEHAVIOR DIAGRAMS (OR DYNAMIC DIAGRAMS)
+
+*Behavior diagrams* describe system events and interactions. Different diagrams describe dynamic aspects, some equivalent in information. Designers choose graphical notation based on prominent aspects. Behavioral models with these diagrams usually describe a single or few system features and their dynamic interactions. The behavioral diagrams are the following:
+
+* *Use case diagram*: Describes a system’s functionality in terms of external actors, their goals, and dependencies. They help understand the system’s boundaries and clarify usage scenarios. They’re particularly relevant in the requirement specification phase and early
+design phase.
+
+* *Activity diagram*: Describes the step-by-step workflows of activities to reach a goal. It shows the overall flow of data and control through an oriented graph, with nodes representing the *activities*.
+
+* *State machine diagram (or statechart)*: Describes the states and state transitions of a system, subsystem, or object. They’re suitable for describing event-driven, discrete behavior, but not continuous behavior. In statecharts, nodes represent states (not actions), unlike in activity diagrams.
+
+* *Interaction diagrams*: A subset of behavior diagrams focus on the flow of control and data among system elements. They include the following diagrams.
+
+	1. *Sequence diagram*: Shows how objects communicate through a temporal sequence of messages. Messages are sequenced vertically on a timeline, and the lifespan of associated objects is reported. Interaction diagrams describe system execution scenarios.
+
+	2. *Communication or collaboration diagram*: Shows the interactions between objects or classes using solid, undirected lines connecting elements that can interact. Messages flow through these links. Sequencing information is obtained by numbering messages. They describe both some static structure (links and nodes) and dynamic behavior (messages) of the system, combining information from class, sequence, and use case diagrams. 
+
+	3. *Interaction overview diagram*: Shows interaction diagrams represented by nodes.
+
+	4. *Timing diagrams*: Interaction diagrams that focus on timing constraints.
+
+---
+
+> **Résumé** :
+> 
+> * Behavior diagrams describe system events and interactions, with different diagrams focusing on dynamic aspects. Use case, activity, state machine, and interaction diagrams are used to describe system functionality, workflows, states, and interactions, respectively.
+
+---
+
+### 6.4.4 UML TOOLS
+
+Given UML’s popularity, many UML modeling tools are available. They’re easily distinguishable from other MDD tools because they focus solely on UML design, with limited support for various MDE scenarios. For instance, they differ from metamodeling tools, which focus on designing new modeling languages.
+
+UML tools create UML models, import/export them in XMI format, and sometimes provide partial code generation. The market offers various UML tool licenses, from open source to freeware to commercial. Wikipedia has a comprehensive list of UML tools with their main features.
+
+---
+
+> **Résumé** :
+> 
+> * UML modeling tools, popular due to UML’s prevalence, differ from metamodeling tools by focusing solely on UML design with limited support for other MDE scenarios.
+> 
+> * UML tools create models, import/export XMI, and sometimes generate code. Wikipedia lists UML tools with features.
+
+---
+
+### 6.4.5 CRITICISMS AND EVOLUTION OF UML
+
+UML has been criticized for being verbose, cumbersome, incoherent, and unusable in domain-specific scenarios. These criticisms, as reported in Bell’s 2004 article "Death by UML Fever," are prevalent online. While some criticisms may be partially true, UML remains the reference design language for software engineers. OMG has taken these criticisms seriously and is simplifying the UML specification.
+
+---
+
+> **Résumé** :
+> 
+> * UML, despite criticisms of verbosity and complexity, remains the reference design language for software engineers. OMG is simplifying the UML specification in response to these criticisms.
 
 ---
