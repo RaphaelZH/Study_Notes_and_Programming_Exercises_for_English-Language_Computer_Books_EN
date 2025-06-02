@@ -1,30 +1,6 @@
 Title: Sans titre  
 Author:
 
-# CHAPTER 3 MDSE Use Cases
-
-MDSE’s most prominent application is *software development automation*, or model-driven development (MDD). MDD automates as much of the software lifecycle as possible, from requirements to deployment. However, MDSE’s potential applications extend far beyond this scope. MDD is merely a part of the MDSE iceberg (Figure 3.1). In this context, MD(S)E can be interpreted as *Model-Driven Everything*, implying that the MDSE approach can be applied to any software engineering task.
-
-![Figure 3.1: MDD is just the most visible side of MDSE.](./03.%20CHAPTER%203%20MDSE%20Use%20Cases/Figures/Figure%203.1.png)
-
-## 3.1 AUTOMATING SOFTWARE DEVELOPMENT
-
-Software development automation starts with a high-level representation of desired software features and gradually transforms it into a functional application. This process may involve user interaction during generation.
-
-Following an MDSE approach, the running application can be obtained through model transformations that progressively refine the software description until an executable version is reached. Figure 3.2 illustrates an MDSE-based development process. In each phase, models are (semi)-automatically generated using model-to-model transformations, utilizing models from the previous phase (and manually completing or refining when necessary). In the final step, the final code is generated through a model-to-text transformation from the design models.
-
-![Figure 3.2: A typical MDSE-based software development process.](./03.%20CHAPTER%203%20MDSE%20Use%20Cases/Figures/Figure%203.2.png)
-
-Introducing MDSE into the development process offers several advantages. It bridges the communication gap between requirements/analysis and implementation by capturing and organizing the system’s understanding. This facilitates discussions among team members and integrates new ones. MDE increases communication effectiveness between stakeholders and the productivity of the development team due to (partial) automation. It also reduces the number of defects in the final code inadvertently introduced by developers.
-
-To generate a running system from models, they must be executable. An executable model is complete enough to be executed. Theoretically, a model is executable when its operational semantics are fully specified. In practice, the excitability of a model may depend more on the execution engine than on the model itself. Some models may not be entirely specified but can be executed by advanced tools that fill in the gaps. Conversely, complex and complete models may not be executable due to the absence of an appropriate execution engine.
-
-*Executable UML*, a well-known family of executable models, uses an action language (imperative pseudocode) to precisely define the behavior of class methods, state transitions, etc. The OMG has standardized executable UML models, including a Foundational Subset for Executable UML Models (fUML) that models software specifications suitable for automated software development. The adopted *Action Language for fUML*, Alf, is a textual notation for UML behaviors attached to UML models at fUML behavior locations. Syntactically, Alf resembles typical C/C++/Java legacy languages, easing learning.
-
-Code generation and model interpretation are two alternative strategies to “implement” execution tools and make executable models execute.
-
-3.1.1 CODE GENERATION
-
 ## 5.4 DOMAIN-DRIVEN DESIGN AND MDSE
 
 Domain-driven design (DDD) is a software development approach based on two main principles:
@@ -270,7 +246,7 @@ The following sections describe a few details about UML modeling to provide an o
 
 	3. *Object diagram*: A view of the structure of example instances of modeled concepts at a specific point in time, possibly including property values. Similar to class diagrams, objects are identified by underlined names. They can also be identified by the tuple object name and class name, the simple object name, or the class they’re instantiated from. The respective notations are as follows:
 
-		`objectName:ClassName` or `objectName` or `:ClassName`
+		<ins>objectName:ClassName</ins> or <ins>objectName</ins> or <ins>:ClassName</ins>
 
 * The *architectural representation* of the system. This level of design describes the system’s architectural organization and structure. It typically consists of reuse and deployment-oriented information, based on the conceptual modeling done in the previous step. The diagrams in this part of the design include:
 
@@ -307,7 +283,7 @@ design phase.
 
 	1. *Sequence diagram*: Shows how objects communicate through a temporal sequence of messages. Messages are sequenced vertically on a timeline, and the lifespan of associated objects is reported. Interaction diagrams describe system execution scenarios.
 
-	2. *Communication or collaboration diagram*: Shows the interactions between objects or classes using solid, undirected lines connecting elements that can interact. Messages flow through these links. Sequencing information is obtained by numbering messages. They describe both some static structure (links and nodes) and dynamic behavior (messages) of the system, combining information from class, sequence, and use case diagrams. 
+	2. *Communication or collaboration diagram*: Shows the interactions between objects or classes using solid, undirected lines connecting elements that can interact. *Messages* flow through these *links* (solid, undirected lines connecting interacting elements). Sequencing information is obtained by numbering messages. They describe both some static structure (links and nodes) and dynamic behavior (messages) of the system, combining information from class, sequence, and use case diagrams. 
 
 	3. *Interaction overview diagram*: Shows interaction diagrams represented by nodes.
 
@@ -386,5 +362,29 @@ One doubt may arise: why not use standard sub-classing instead of stereotyping? 
 > * Stereotypes extend metaclasses by defining additional semantics for their concept. A model element can be stereotyped multiple ways, specifying base metaclasses, constraints, tagging values, and an icon.
 > 
 > * Stereotypes define new modeling concepts, while subclassing defines a special relation between items in the same model. Stereotypes are used for additional semantic constraints, semantics outside UML’s scope, and new modeling concepts.
+
+---
+
+### 6.5.2 PREDICATES
+
+Another way to vary UML semantics is to use restriction *predicates* (e.g., OCL expressions) that reduce semantic variation of modeling elements. Predicates can be attached to any UML meta-class or stereotype and can be formal or informal expressions. To be coherent with UML symbols, expressions must not contradict the inherited base semantics of elements.
+
+---
+
+> **Résumé** :
+> 
+> * Restriction predicates, such as OCL expressions, can be used to vary UML semantics by reducing the semantic variation of modeling elements. These predicates can be attached to any UML meta-class or stereotype and can be formal or informal expressions.
+
+---
+
+### 6.5.3 TAGGED VALUES
+
+*Tagged values* consist of a tag-value pair that can be attached as a typed property to a stereotype. They allow designers to specify additional information useful for implementing, transforming, or executing a model, such as defining project management data. For example, a tagged value "status = unit_tested" can declare that a component has gone through the unit testing phase.
+
+---
+
+> **Résumé** :
+> 
+> * Tagged values are typed properties attached to stereotypes, providing additional information for model implementation, transformation, or execution.
 
 ---
