@@ -75,13 +75,13 @@ When software is derived from models, testing the code is unnecessary (assuming 
 
 # CHAPTER 6 Modeling Languages at a Glance
 
-Modeling languages are conceptual tools that let designers formalize their thoughts and visualize reality explicitly, whether textually or graphically. This chapter describes the main features of modeling languages, considering general-purpose languages (GPLs), domain-specific languages (DSLs), and intermediate solutions that customize GPLs for specific purposes.
+Modeling languages are conceptual tools that let designers formalize their thoughts and visualize reality explicitly, whether textually or graphically. This chapter describes the main features of modeling languages, considering general-purpose languages (GPLs), domain-specific languages (DSLs), and the intermediate solutions that customize GPLs for specific purposes.
 
 ---
 
 > **Résumé** :
 > 
-> * Modeling languages formalize thoughts and visualize reality, covering general-purpose languages (GPLs), domain-specific languages (DSLs), and customize GPLs.
+> * Modeling languages formalize thoughts and visualize reality, covering general-purpose languages (GPLs), domain-specific languages (DSLs), and the intermediate solutions that customize GPLs.
 
 ---
 
@@ -123,7 +123,7 @@ Modeling languages describe the real world at a specific level of abstraction an
 > 
 > * Defining a language without specifying semantics leads to incorrect usage and misunderstandings.
 > 
-> * Modeling languages describe the real world at a specific level of abstraction. Their semantics, which defines the meaning of concepts, can be denotational (using mathematical expressions), operational (through an interpreter), or translational (mapping to another language).
+> * Modeling languages describe the real world at a specific abstraction level. Their semantics details this, enabling correct language usage, which can be denotational (using mathematical expressions), operational (through an interpreter), or translational (mapping to another language).
 
 ---
 
