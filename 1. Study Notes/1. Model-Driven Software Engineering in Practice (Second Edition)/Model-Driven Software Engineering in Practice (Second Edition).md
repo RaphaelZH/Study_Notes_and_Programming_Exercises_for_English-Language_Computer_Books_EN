@@ -97,11 +97,11 @@ A modeling language is defined by three core ingredients:
 
 Modeling languages require three mandatory ingredients: semantics, abstract syntax, and concrete syntax. Figure 6.1 illustrates their relationships. Semantics defines abstract syntax, which indirectly defines concrete syntax; the concrete syntax represents the abstract syntax.
 
+![Figure 6.1: The three main ingredients of a modeling language (semantics, abstract syntax, and concrete syntax) and their relationships.](./06.%20CHAPTER%206%20Modeling%20Languages%20at%20a%20Glance/Figures/Figure%206.1.png)
+
 This applies to both general-purpose languages (GPLs) and domain-specific ones (DSLs). Unfortunately, language designers and users often neglect aspects, especially semantics. This is likely due to the concrete syntax’s visibility, representing the actual notation used in everyday applications.
 
 However, defining a language without fully specifying its conceptual elements and meanings is illogical. A partial or incorrect semantics leads to incorrect language usage, misunderstandings, and differing interpretations of concepts and models. This can cause confusion and errors.
-
-![Figure 6.1: The three main ingredients of a modeling language (semantics, abstract syntax, and concrete syntax) and their relationships.](./06.%20CHAPTER%206%20Modeling%20Languages%20at%20a%20Glance/Figures/Figure%206.1.png)
 
 Modeling languages describe the real world at a specific level of abstraction and from a particular perspective. Their semantics, which aims to describe this in detail, enables correct language usage. Semantics can be defined as:
 
@@ -131,11 +131,11 @@ Modeling languages describe the real world at a specific level of abstraction an
 
 In software engineering, you typically model orthogonal system aspects using different modeling languages or a multi-viewpoint modeling language with various diagram types.
 
-System aspects are classified into *static (or structural)* and dynamic aspects. Static aspects describe the main ingredients and their relations, while *dynamic* aspects describe their behavior in terms of actions, events, and interactions. Separating static and dynamic aspects is usually a good practice.
+System aspects are classified into *static* (or *structural)* and dynamic aspects. Static aspects describe the main ingredients and their relations, while *dynamic* aspects describe their behavior in terms of actions, events, and interactions. Separating static and dynamic aspects is usually a good practice.
 
-Languages often include extensibility mechanisms that allow designers to define new modeling elements, which is common in GPLs that need specialization for specific domains or problems. This can lead to domain-specific languages developed from general-purpose ones.
+Furthermore, languages often include extensibility mechanisms that allow designers to expand coverage by defining new modeling elements. This is common in GPLs, which often need specialization for specific domains or problems. This can lead to a well-known domain-specific language from general-purpose ones.
 
-A well-known example is UML, the GPL proposed by OMG within the MDA framework. UML is a general-purpose language with various diagrams and extension mechanisms. Several extensions have become standard languages, such as SysML and SoaML. Therefore, UML can be seen as a *family of languages (or language suite)* in three senses: as a whole with enough variability to be considered a group of languages, paired with correlated languages like OCL that improve its expressive power, and accompanied by domain-specific profiles defined around it.
+UML, a general-purpose language proposed by OMG within the MDA framework, comprises various diagrams for system description and extension mechanisms. Several extensions have become standard languages like SysML and SoaML. Thus, UML can be considered a family of languages in three senses: it allows enough variability to be considered a group of languages, pairs with correlated languages like OCL to enhance its expressive power, and is accompanied by domain-specific profiles.
 
 ---
 
@@ -143,11 +143,11 @@ A well-known example is UML, the GPL proposed by OMG within the MDA framework. U
 > 
 > * Software engineering models orthogonal system aspects using different modeling languages or multi-viewpoint modeling languages.
 > 
-> * System aspects are classified into static and dynamic aspects. Static aspects describe ingredients and relations, while dynamic aspects describe behavior.
+> * System aspects are classified into static (or structural) and dynamic aspects. Static aspects describe ingredients and relations, while dynamic aspects describe behavior. Separating these aspects is beneficial.
 > 
-> * Languages often include extensibility mechanisms for defining new modeling elements, leading to domain-specific languages.
+> * Languages often include extensibility mechanisms for defining new modeling elements, especially in GPLs for domain-specific specialization, can lead to the creation of domain-specific languages.
 > 
-> * UML, proposed by OMG within the MDA framework, is a general-purpose language with various diagrams and extension mechanisms. It can be seen as a family of languages due to its variability, correlated languages like OCL, and domain-specific profiles.
+> * UML, a general-purpose language, is a family of languages due to its variability, correlated languages like OCL, and domain-specific profiles.
 
 ---
 
