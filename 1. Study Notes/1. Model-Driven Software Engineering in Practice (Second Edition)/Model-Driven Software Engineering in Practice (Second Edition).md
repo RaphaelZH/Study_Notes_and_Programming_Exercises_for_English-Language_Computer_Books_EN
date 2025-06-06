@@ -144,7 +144,8 @@ UML, a unifying language for software modeling, has a long history of merges and
 UML facilitates system design and promotes good design practices. It offers several features:
 
 * Integrated and orthogonal models: UML’s diagrams share symbols and allow cross-referencing between modeling artifacts.
-- Modeling at different levels of detail: UML allows designers to choose the right amount of information to include in diagrams based on the purpose and phase of development.
+
+* Modeling at different levels of detail: UML allows designers to choose the right amount of information to include in diagrams based on the purpose and phase of development.
 
 * Extensibility: UML provides features for designing customized modeling languages.
 
@@ -156,11 +157,12 @@ The following sections describe a few details about UML modeling to provide an o
 
 > **Résumé** :
 > 
-> * UML enables system design through integrated models, customizable modeling languages, and pattern-based design, allowing designers to choose the right level of detail for their needs.
+> * UML facilitates system design with integrated and orthogonal models, modeling at different levels of detail, extensibility (customized modeling languages), and pattern-based design.
 > 
 > * UML modeling details are provided to overview a typical GPL.
 
 ---
+
 
 ### 6.4.2 STRUCTURE DIAGRAMS (OR STATIC DIAGRAMS)
 
@@ -200,12 +202,11 @@ The following sections describe a few details about UML modeling to provide an o
 
 *Behavior diagrams* describe system events and interactions. Different diagrams describe dynamic aspects, some equivalent in information. Designers choose graphical notation based on prominent aspects. Behavioral models with these diagrams usually describe a single or few system features and their dynamic interactions. The behavioral diagrams are the following:
 
-* *Use case diagram*: Describes a system’s functionality in terms of external actors, their goals, and dependencies. They help understand the system’s boundaries and clarify usage scenarios. They’re particularly relevant in the requirement specification phase and early
-design phase.
+* *Use case diagram*: Describes a system’s functionality in terms of external actors, their goals, and dependencies. They help understand the system’s boundaries and clarify usage scenarios. They’re especially relevant in the requirements and early design phases.
 
 * *Activity diagram*: Describes the step-by-step workflows of activities to reach a goal. It shows the overall flow of data and control through an oriented graph, with nodes representing the *activities*.
 
-* *State machine diagram (or statechart)*: Describes the states and state transitions of a system, subsystem, or object. They’re suitable for describing event-driven, discrete behavior, but not continuous behavior. In statecharts, nodes represent states (not actions), unlike in activity diagrams.
+* *State machine diagram* (or *statechart*): Describes the states and state transitions of a system, subsystem, or object. They’re suitable for describing event-driven, discrete behavior, but not continuous behavior. In statecharts, nodes represent states (not actions), unlike in activity diagrams.
 
 * *Interaction diagrams*: A subset of behavior diagrams focus on the flow of control and data among system elements. They include the following diagrams.
 
