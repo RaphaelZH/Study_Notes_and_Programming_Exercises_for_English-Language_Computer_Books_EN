@@ -5,13 +5,9 @@ Author:
 
 Modeling languages are conceptual tools that let designers formalize their thoughts and visualize reality explicitly, whether textually or graphically. This chapter describes the main features of modeling languages, considering general-purpose languages (GPLs), domain-specific languages (DSLs), and the intermediate solutions that customize GPLs for specific purposes.
 
----
-
 > **Résumé** :
 > 
 > * Modeling languages formalize thoughts and visualize reality, covering general-purpose languages (GPLs), domain-specific languages (DSLs), and the intermediate solutions that customize GPLs.
-
----
 
 ## 6.1 ANATOMY OF MODELING LANGUAGES
 
@@ -39,8 +35,6 @@ Modeling languages describe the real world at a specific level of abstraction an
 
 * *Translational*: Mapping language concepts to another language with clearly defined semantics.
 
----
-
 > **Résumé** :
 > 
 > * A modeling language consists of abstract syntax, concrete syntax, and semantics.
@@ -53,8 +47,6 @@ Modeling languages describe the real world at a specific level of abstraction an
 > 
 > * Modeling languages describe the real world at a specific abstraction level. Their semantics details this, enabling correct language usage, which can be denotational (using mathematical expressions), operational (through an interpreter), or translational (mapping to another language).
 
----
-
 ## 6.2 MULTI-VIEW MODELING AND LANGUAGE EXTENSIBILITY
 
 In software engineering, you typically model orthogonal system aspects using different modeling languages or a multi-viewpoint modeling language with various diagram types.
@@ -65,8 +57,6 @@ Furthermore, languages often include extensibility mechanisms that allow designe
 
 UML, a general-purpose language proposed by OMG within the MDA framework, comprises various diagrams for system description and extension mechanisms. Several extensions have become standard languages like SysML and SoaML. Thus, UML can be considered a family of languages in three senses: it allows enough variability to be considered a group of languages, pairs with correlated languages like OCL to enhance its expressive power, and is accompanied by domain-specific profiles.
 
----
-
 > **Résumé** :
 > 
 > * Software engineering models orthogonal system aspects using different modeling languages or multi-viewpoint modeling languages.
@@ -76,8 +66,6 @@ UML, a general-purpose language proposed by OMG within the MDA framework, compri
 > * Languages often include extensibility mechanisms for defining new modeling elements, especially in GPLs for domain-specific specialization, can lead to the creation of domain-specific languages.
 > 
 > * UML, a general-purpose language, is a family of languages due to its variability, correlated languages like OCL, and domain-specific profiles.
-
----
 
 ## 6.3 GENERAL-PURPOSE VS. DOMAIN-SPECIFIC MODELING LANGUAGES
 
@@ -95,8 +83,6 @@ UML may have flaws, but we’re aware of them. Creating an unnecessary DSL may r
 
 On the theoretical side, concerning GPLs, one may wonder if a language to be a GPL must also be Turing-complete. If not, it means it’s not truly "general," since it can’t solve every problem. However, this interpretation is rarely considered, and the definition of a language as GPL or DSL is more a matter of practice or subjectivity. Martin Fowler clarifies that even deciding whether a set of concepts (or operations) is a language or just a set of operations within another language is a matter of perspective.
 
----
-
 > **Résumé** :
 > 
 > * Modeling languages are classified as domain-specific or general-purpose.
@@ -113,8 +99,6 @@ On the theoretical side, concerning GPLs, one may wonder if a language to be a G
 > 
 > * The definition of a language as GPL or DSL is subjective, with the distinction often based on practical considerations rather than strict theoretical criteria.
 
----
-
 ## 6.4 GENERAL-PURPOSE MODELING: THE CASE OF UML
 
 This section provides an overview of the *Unified Modeling Language (UML)*. UML is widely known and adopted, making it an interesting example for discussing general characteristics of modeling languages. It’s a full-fledged language suite with various diagrams for describing a system from different perspectives. Figure 6.2 shows the taxonomy of UML diagrams, with 7 for static aspects and 7 for dynamic aspects. As shown in Figure 6.3, some diagrams describe class characteristics, while others describe instance features and behavior. Some diagrams can describe both levels.
@@ -127,8 +111,6 @@ UML is a modeling language that doesn’t enforce a specific development method.
 
 UML, a unifying language for software modeling, has a long history of merges and restructuring. Some pieces, like Harel’s statecharts and Booch’s notations, date back to the mid-1980s when various notations existed. The first version of UML emerged in 1996 from the fusion of Booch, Rumbaugh, and Jacobson’s approaches. Discussed at OOPSLA, it was submitted to OMG in August 1997 and released as UML 1.1 in November 1997. Despite criticisms, UML remains a complex and inconsistent language, yet remains a crucial tool for software modeling.
 
----
-
 > **Résumé** :
 > 
 > * UML is a widely adopted modeling language suite with various diagrams for describing systems. It includes 14 diagrams, seven for static and seven for dynamic aspects, covering class characteristics, instance features, and behavior.
@@ -136,8 +118,6 @@ UML, a unifying language for software modeling, has a long history of merges and
 > * UML is a modeling language that can be used independently of the Unified Process (UP) or its specialization, Rational Unified Process (RUP).
 > 
 > * UML, a software modeling language, emerged in 1996 from the fusion of Booch, Rumbaugh, and Jacobson’s approaches. Despite criticisms, it remains a crucial tool for software modeling.
-
----
 
 ### 6.4.1 DESIGN PRACTICES
 
@@ -153,16 +133,11 @@ UML facilitates system design and promotes good design practices. It offers seve
 
 The following sections describe a few details about UML modeling to provide an overview of a typical GPL.
 
----
-
 > **Résumé** :
 > 
 > * UML facilitates system design with integrated and orthogonal models, modeling at different levels of detail, extensibility (customized modeling languages), and pattern-based design.
 > 
 > * UML modeling details are provided to overview a typical GPL.
-
----
-
 
 ### 6.4.2 STRUCTURE DIAGRAMS (OR STATIC DIAGRAMS)
 
@@ -186,8 +161,6 @@ The following sections describe a few details about UML modeling to provide an o
 
 	3. *Deployment diagram*: Describes how software artifacts are deployed on hardware in systems’ implementations.
 
----
-
 > **Résumé** :
 > 
 > * Structure diagrams describe system elements, used extensively in software documentation.
@@ -195,8 +168,6 @@ The following sections describe a few details about UML modeling to provide an o
 > * The system’s conceptual items are described using class, composite structure, and object diagrams. These diagrams illustrate the system’s structure, internal class composition, and example instances of modeled concepts.
 > 
 > * The architectural design level describes the system’s organization and structure, including component, package, and deployment diagrams.
-
----
 
 ### 6.4.3 BEHAVIOR DIAGRAMS (OR DYNAMIC DIAGRAMS)
 
@@ -218,13 +189,9 @@ The following sections describe a few details about UML modeling to provide an o
 
 	4. *Timing diagrams*: Interaction diagrams that focus on timing constraints.
 
----
-
 > **Résumé** :
 > 
 > * Behavior diagrams describe system events and interactions, with different diagrams focusing on dynamic aspects. Use case, activity, state machine, and interaction diagrams are used to describe system functionality, workflows, states, and interactions, respectively.
-
----
 
 ### 6.4.4 UML TOOLS
 
@@ -232,43 +199,31 @@ Given UML’s popularity, many UML modeling tools are available. They’re easil
 
 UML tools create UML models, import/export them in XMI format, and sometimes provide partial code generation. The market offers various UML tool licenses, from open source to freeware to commercial. Wikipedia has a comprehensive list of UML tools with their main features.
 
----
-
 > **Résumé** :
 > 
 > * UML modeling tools, popular due to UML’s prevalence, differ from metamodeling tools by focusing solely on UML design with limited support for other MDE scenarios.
 > 
-> * UML tools create models, import/export XMI, and sometimes generate code. Wikipedia lists UML tools with features.
-
----
+> * UML tools create models, import/export them in XMI format, and sometimes generate code. Wikipedia lists UML tools with features.
 
 ### 6.4.5 CRITICISMS AND EVOLUTION OF UML
 
 UML has been criticized for being verbose, cumbersome, incoherent, and unusable in domain-specific scenarios. These criticisms, as reported in Bell’s 2004 article "Death by UML Fever," are prevalent online. While some criticisms may be partially true, UML remains the reference design language for software engineers. OMG has taken these criticisms seriously and is simplifying the UML specification.
 
----
-
 > **Résumé** :
 > 
 > * UML, despite criticisms of verbosity and complexity, remains the reference design language for software engineers. OMG is simplifying the UML specification in response to these criticisms.
 
----
-
 ## 6.5 UML EXTENSIBILITY: THE MIDDLE WAY BETWEEN GPL AND DSL
 
-If the development requires unusual modeling, consider using a domain-specific language. Instead of a new DSL, extend the existing GPL to fit the needs. For example, we show UML’s extensibility features.
+If the development requires unusual modeling, consider using a domain-specific language. Instead of a new DSL, extend the existing GPL as an intermediate solution to fit the needs. For example, we show UML’s extensibility features.
 
 UML offers various extension features: stereotypes, constraints, tagged values, and profiles. The *Profile diagram*, focusing on language extensibility, shows stereotypes as classes and profiles as packages at the metamodel level. The extension relationship indicates the metamodel element a stereotype extends. This section provides an overview of these extensibility options.
 
----
-
 > **Résumé** :
 > 
-> * Consider extending existing GPLs with domain-specific languages for unusual modeling needs.
+> * Consider using a domain-specific language for unusual modeling, or extending an existing GPL.
 > 
 > * UML offers extensibility through stereotypes, constraints, tagged values, and profiles. The Profile diagram shows stereotypes as classes and profiles as packages.
-
----
 
 ### 6.5.1 STEREOTYPES
 
@@ -282,38 +237,26 @@ Stereotypes extend meta-classes by defining additional semantics for their conce
 
 * *Icon*, defining the visual appearance of stereotyped elements in the diagrams.
 
-One doubt may arise: why not use standard sub-classing instead of stereotyping? Subclassing defines a special relation between items in the same model, while stereotypes define new modeling concepts used to create models. Stereotypes are typically used to define (i) additional semantic constraints, (ii) semantics outside UML’s scope (e.g., metadata for code generators), or (iii) new modeling concepts with specific behavior or properties that will often be reused.
-
----
+One doubt may arise: why not use standard sub-classing instead of stereotyping? Subclassing defines a special relation between items in the same model, while stereotypes define new modeling concepts used to create models. Stereotypes are typically used to define (i) additional semantic constraints, (ii) additional semantics outside UML’s scope (e.g., metadata for code generators), or (iii) new modeling concepts with specific behavior or properties that will often be reused.
 
 > **Résumé** :
 > 
 > * Stereotypes extend metaclasses by defining additional semantics for their concept. A model element can be stereotyped multiple ways, specifying base metaclasses, constraints, tagging values, and an icon.
 > 
-> * Stereotypes define new modeling concepts, while subclassing defines a special relation between items in the same model. Stereotypes are used for additional semantic constraints, semantics outside UML’s scope, and new modeling concepts.
-
----
+> * Stereotypes define new modeling concepts, while subclassing defines a special relation between items in the same model. Stereotypes are used for additional semantic constraints, additional semantics outside UML’s scope, and reusable new modeling concepts.
 
 ### 6.5.2 PREDICATES
 
-Another way to vary UML semantics is to use restriction *predicates* (e.g., OCL expressions) that reduce semantic variation of modeling elements. Predicates can be attached to any UML meta-class or stereotype and can be formal or informal expressions. To be coherent with UML symbols, expressions must not contradict the inherited base semantics of elements.
-
----
+Another way to vary UML semantics is to use *restriction predicates* (e.g., OCL expressions) that reduce semantic variation of modeling elements. Predicates can be attached to any UML meta-class or stereotype and can be formal or informal expressions. To be coherent with UML symbols, expressions must not contradict the inherited base semantics of elements.
 
 > **Résumé** :
 > 
 > * Restriction predicates, such as OCL expressions, can be used to vary UML semantics by reducing the semantic variation of modeling elements. These predicates can be attached to any UML meta-class or stereotype and can be formal or informal expressions.
 
----
-
 ### 6.5.3 TAGGED VALUES
 
 *Tagged values* consist of a tag-value pair that can be attached as a typed property to a stereotype. They allow designers to specify additional information useful for implementing, transforming, or executing a model, such as defining project management data. For example, a tagged value "status = unit_tested" can declare that a component has gone through the unit testing phase.
 
----
-
 > **Résumé** :
 > 
 > * Tagged values are typed properties attached to stereotypes, providing additional information for model implementation, transformation, or execution.
-
----
