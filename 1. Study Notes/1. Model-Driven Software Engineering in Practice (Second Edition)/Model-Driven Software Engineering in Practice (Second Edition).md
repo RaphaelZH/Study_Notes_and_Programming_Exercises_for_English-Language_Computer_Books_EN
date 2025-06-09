@@ -436,3 +436,65 @@ All language aspects beyond abstract syntax are defined on the basis of metamode
 > * This chapter defines the abstract syntax of a modeling language, including constraints, and then defines graphical and textual concrete syntaxes based on it.
 > 
 > * Transformation engineering, using modeling language metamodels, formalizes modeling language semantics through denotational, operational, and translational approaches.
+
+## 7.2 ABSTRACT SYNTAX DEVELOPMENT
+
+In this section, we explain how metamodeling languages are developed using metamodeling as the central technique. The OMG has established the *Meta Object Facility* (MOF) as the standard metamodeling language. Several other languages and tools have been proposed, including the *Eclipse Modeling Framework* (EMF) and its metamodeling language *Ecore*. Both MOF and Ecore are based on a subset of UML class diagrams for describing structural aspects, but Ecore is tailored to Java for implementation purposes. We first use simplified UML class diagrams corresponding to MOF to explain metamodel definition, and then discuss Ecore’s peculiarities in Section 7.2.2.
+
+Why not reuse UML for metamodeling as it is? MOF is similar to UML class diagrams but focuses on defining other modeling languages. It removes concepts like n-ary associations, association classes, interfaces, and dependencies available in UML. The main differences lie in their domains. UML is a comprehensive object-oriented modeling language covering structural, behavioral, conceptual, and implementation aspects. In contrast, MOF is a specialized DSML for metamodeling that reuses a subset of UML’s core.
+
+<font style="color: #006ec7 ">Benefits of metamodeling.</font>  &emsp; By using a metamodeling language, the language designer can define the abstract syntax of their own modeling language, whether general or domain-specific. Regardless of the metamodeled language, an explicit metamodel conforming to a standardized meta-metamodel offers several benefits.
+
+* **Precise language definition**: There’s a formal definition of the language’s syntax that machines can process. For instance, metamodels can check if models are valid instances.
+
+* **Accessible language definition**: UML class diagrams, a well-known modeling language, are used to define metamodels. Knowledge of UML class diagrams is sufficient to read and understand these definitions.
+
+* **Evolvable language definition**: Metamodels can be modified like any other model. For instance, new modeling concepts can be added to the language by creating new subclasses for existing metamodel classes. An accessible language definition simplifies adapting modeling languages based on metamodels.
+
+Generic tools, metamodel agnostic, may be developed at the metametamodel level. Current metamodeling frameworks offer sophisticated reflection techniques to develop programs applicable to all instances of metamodels conforming to a specific meta-metamodel. Examples include.
+
+* **Exchange formats**: The meta-metamodel supports serializing/deserializing models into XML documents for exchange between tools supporting the same meta-metamodel.
+
+* **Model repositories**: Models can be stored and retrieved from a model repository using generic storage/loading functionalities, similar to model exchange.
+
+* **Model editors**: Generic editors applicable to all models, regardless of the modeling language, may be provided for model modification.
+
+The list of generic support is extensive. Simple programs can compute model metrics, such as the number of model elements. Sophisticated tool support can be developed at the meta-metamodel level, e.g., model comparison and versioning support, as discussed in Chapter 10.
+
+<font style="color: #006ec7 ">Four-layer metamodeling stack.</font>  &emsp; Current metamodeling tools typically use a four-layer metamodeling stack, as introduced in Chapter 2. Figure 7.2 shows an overview of this architecture. The upper half focuses on language engineering, building models for defining modeling languages, while the lower half focuses on domain engineering, building models for specific domains. The top layer, named M3 in OMG terms, contains metamodeling languages that specify the metamodeling concepts used to define metamodels. These languages are usually focused and offer a minimal set of concepts. To have a finite metamodeling architecture, these languages are often reflexively defined, meaning they can describe themselves. No additional language on top of M3 is needed to define M3, but having the same language on M4 as on M3 seems to be practical and offers similar expressibility. MOF and Ecore are designed as reflexive languages typically used on the M3 layer.
+
+![Figure 7.2: Four-layered metamodeling stack at a glance.](./07.%20CHAPTER%207%20Developing%20your%20Own%20Modeling%20Language/Figures/Figure%207.2.png)
+
+On the M2 layer, metamodels define modeling languages (e.g., UML, ER) by defining their concepts. These metamodels can be instantiated to build models on the M1 layer. M1 models represent systems like a university management system (UniSystem in Figure 7.2) and define domain concepts using language concepts from M2. On the M0 layer, domain concept instances represent real-world entities, e.g., a snapshot of the university management system at a specific time.
+
+The four-layer metamodeling stack assumes that a model on layer $M$ conforms to a model on layer $M+1$. This relationship, called *conformsTo*, means that a model is a graph with nodes and edges that fulfill the constraints of the next higher level. If each element on layer $M$ fulfills the constraints of its type element on layer $M+1$, the model on layer $M$ conforms to its type model on layer $M+1$. In case of M0 and M1, the domain model instances conform to the domain model. In case of M1 and M2, the model conforms to its metamodel. In case of M2 and M3, the metamodel conforms to its meta-metamodel. Finally, in case of M3, the meta-metamodel conforms to itself, as the *conformsTo* relationship is reflexive.
+
+> **Résumé** :
+> 
+> * Metamodeling languages, such as MOF and Ecore, are developed using metamodeling techniques. MOF is the OMG standard, while Ecore, tailored to Java, is part of the Eclipse Modeling Framework.
+> 
+> * MOF, a specialized DSML for metamodeling, reuses a subset of UML’s core, focusing on defining other modeling languages while omitting certain UML concepts. The main differences lie in their domains.
+> 
+> * Metamodeling allows language designers to define abstract syntax for modeling languages, offering benefits regardless of the metamodeled language.
+> 
+>	 * **Precise language definition**: Machines can process formal language syntax definitions, such as metamodels checking model validity.
+>	 
+>	 * **Accessible language definition**: UML class diagrams define metamodels, requiring UML knowledge for understanding.
+>	 
+>	 * **Evolvable language definition**: Metamodels allow for the addition of new modeling concepts by creating subclasses for existing metamodel classes, simplifying the adaptation of modeling languages.
+> 
+> * Generic tools can be developed at the metametamodel level using sophisticated reflection techniques.
+> 
+>	 * **Exchange formats**: The meta-metamodel supports XML serialization/deserialization for model exchange.
+>	 
+>	 * **Model repositories**: Model repositories store and retrieve models using generic storage/loading functionalities.
+>	 
+>	 * **Model editors**: Generic model editors are available for all models, regardless of modeling language.
+> 
+> * Generic support for models includes computing model metrics and developing sophisticated tool support at the meta-metamodel level.
+> 
+> * A four-layer metamodeling stack is commonly used, with the upper half focusing on language engineering and the lower half on domain engineering. The top layer, M3, contains metamodeling languages for defining metamodels, often reflexively defined for a finite architecture.
+> 
+> * Metamodels define modeling languages (M2), which are instantiated to build models (M1) representing systems. Domain concept instances (M0) represent real-world entities.
+> 
+> * The four-layer metamodeling stack assumes models conform to higher-level models, with each layer’s elements fulfilling the constraints of the next layer. This relationship is reflexive for the meta-metamodel.
