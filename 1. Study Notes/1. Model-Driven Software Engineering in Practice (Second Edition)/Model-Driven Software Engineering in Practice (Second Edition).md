@@ -368,3 +368,11 @@ Executability can be implemented through model interpretation (reading and execu
 >	 * **Internality**: Internal DSLs extend a host language to mimic a domain, while external DSLs have their own custom syntax and can be used independently.
 >	 
 >	 * **Execution**: Executability can be implemented through model interpretation or code generation.
+
+### 6.6.2 SOME EXAMPLES OF DSLS
+
+To make the discussion on DSLs more concrete, we provide excerpts from diverse languages, each with varying applicability and notation.
+
+> **Résumé** :
+> 
+> * Excerpts from diverse DSLs are provided to illustrate their applicability and notation.
