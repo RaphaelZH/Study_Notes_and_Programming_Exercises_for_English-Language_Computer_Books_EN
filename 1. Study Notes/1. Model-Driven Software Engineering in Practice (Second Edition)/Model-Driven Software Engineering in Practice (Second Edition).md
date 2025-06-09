@@ -323,7 +323,15 @@ To be useful, the DSL should follow these principles:
 
 Good DSLs don’t appear out of nowhere. MDSE aims to have good language designers who build suitable DSLs for the right audience. Refining a good language takes years, involving industrial experience and thousands of users. While DSL development is encouraged, careful design is essential. Defining a new DSL is not trivial and may lead to a language with weaknesses or drawbacks for future users. Tools, design interfaces, and runtime architectures should be tailored to the domain to avoid user rejection.
 
-**Classification of DSLs**
+> **Résumé** :
+> 
+> * DSLs require domain knowledge and language engineering practices for design.
+> 
+> * A useful DSL should provide good abstractions, be intuitive, and evolve based on user needs. It should be adopted by all, combined with supporting tools, and follow the open-close principle.
+> 
+> * Good DSLs require careful design, industrial experience, and thousands of users over years. Defining a new DSL is not trivial and should be tailored to the domain.
+
+### 6.6.2 CLASSIFICATION OF DSLS
 
 DSLs can be classified based on focus, style, notation, internality, and execution.
 
@@ -351,12 +359,6 @@ Executability can be implemented through model interpretation (reading and execu
 
 > **Résumé** :
 > 
-> * DSLs require domain knowledge and language engineering practices for design.
-> 
-> * A useful DSL should provide good abstractions, be intuitive, and evolve based on user needs. It should be adopted by all, combined with supporting tools, and follow the open-close principle.
-> 
-> * Good DSLs require careful design, industrial experience, and thousands of users over years. Defining a new DSL is not trivial and should be tailored to the domain.
-> 
 > * DSLs are classified based on focus, style, notation, internality, and execution.
 > 
 >	 * **Focus** : DSLs can be vertical, targeting specific industries, or horizontal, with broader applicability. Examples include SQL, Flex, IFML, and WebML.
@@ -369,10 +371,26 @@ Executability can be implemented through model interpretation (reading and execu
 >	 
 >	 * **Execution**: Executability can be implemented through model interpretation or code generation.
 
-### 6.6.2 SOME EXAMPLES OF DSLS
+## 6.7 DEFINING MODELING CONSTRAINTS (OCL)
 
-To make the discussion on DSLs more concrete, we provide excerpts from diverse languages, each with varying applicability and notation.
+Modeling and metamodeling languages are usually small, with limited constructs for defining new languages.
+
+This facilitates their practical use (learning curve is not steep since language designers don’t need to learn many concepts), but it has a price. Metamodeling languages can only express a limited subset of relevant information for defining a modeling language. They only support defining basic modeling constraints, such as cardinality constraints that restrict possible links between modeling elements.
+
+Object Constraint Language (OCL) is a general-purpose, textual formal language adopted as a standard by the OMG. It’s a *typed*, *declarative*, and *side effect-free* *specification* language. Each OCL expression has a type, evaluates to a value of that type, and must conform to its rules and operations. OCL expressions can query or constrain the system’s state but not modify it. It doesn’t include imperative constructs and doesn’t include implementation details or guidelines.
+
+OCL complements metamodels with textual rules that models conforming to them must follow. These rules, known as well-formedness rules when applied to a metamodel, define the set of well-formed models that can be specified with that specific modeling language.
+
+OCL constraints are invariants defined in a specific type’s context. Their condition must be satisfied by all instances of the *context type*. The standard OCL library defines primitive and collection types, along with their operations. Quantifiers (like for *all* and *exists*) and other iterators (*select*, *reject*, *closure*, etc.) are also available. Access to object properties and navigation to related objects is done using the dot notation. An introductory OCL tutorial is at [`http://modeling-languages.com/object-constraint-language-ocl-a-definitive-guide`](http://modeling-languages.com/object-constraint-language-ocl-a-definitive-guide).
 
 > **Résumé** :
 > 
-> * Excerpts from diverse DSLs are provided to illustrate their applicability and notation.
+> * Modeling and metamodeling languages are limited in their constructs for defining new languages.
+> 
+> * Metamodeling languages, while easy to use, have limitations in expressing modeling language information. They only support basic constraints, like cardinality restrictions.
+> 
+> * Object Constraint Language (OCL) is a typed, declarative, and side-effect-free specification language adopted by the OMG. It evaluates to a value of its type and conforms to its rules and operations.
+> 
+> * OCL complements metamodels with textual rules defining well-formed models.
+> 
+> * OCL constraints define invariants for a specific type, ensuring all instances satisfy the condition. The standard OCL library includes primitive and collection types, operations, quantifiers, and iterators.
