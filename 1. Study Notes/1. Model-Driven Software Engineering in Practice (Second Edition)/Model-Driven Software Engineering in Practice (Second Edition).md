@@ -394,3 +394,45 @@ OCL constraints are invariants defined in a specific type’s context. Their con
 > * OCL complements metamodels with textual rules defining well-formed models.
 > 
 > * OCL constraints define invariants for a specific type, ensuring all instances satisfy the condition. The standard OCL library includes primitive and collection types, operations, quantifiers, and iterators.
+
+# CHAPTER 7 Developing your Own Modeling Language
+
+Modeling is often misunderstood as just drawing pretty pictures. However, models follow a clearly defined structure, similar to program code, conforming to the associated *metamodel* representing the modeling language’s *abstract syntax*. This well-defined structure enables various operations, such as loading/storing models, querying, transforming, and checking well-formedness. In some modeling environments and tools, metamodels are hidden behind the user interface, making them invisible to modelers. Designers may not need a clear understanding of these aspects in simple scenarios, but it’s crucial for complex MDE design, especially when building tailored environments. Developing and using a metamodel is crucial because other language aspects, like visual notation, are heavily based on them.
+ 
+> **Résumé** :
+> 
+> * Modeling follows a structured approach, similar to program code, and is based on metamodels representing the modeling language’s abstract syntax. This structure enables various operations and is crucial for complex MDE design.
+
+## 7.1 METAMODEL-CENTRIC LANGUAGE DESIGN
+
+This chapter develops a new modeling language. We’ll define the most important syntactical ingredients, namely the *abstract syntax* and the *concrete syntax* introduced in Chapter 6.
+
+The first ingredient is defining modeling concepts and their properties by defining metamodels, which play a role corresponding to grammars for textual languages. A grammar defines *all valid sentences* of a language, while a metamodel defines valid models of a modeling language. Metamodels are defined with *metamodeling languages*, which are heavily based on the core concepts of structural object-oriented modeling languages, such as *classes*, *attributes*, and *associations*—so to speak, the core concepts of UML class diagrams. The term "metamodeling languages" originates from the fact that these modeling languages are applied for *modeling* modeling languages.
+
+The prefix *meta* in this context implies defining the technique itself. *Metalearning*, for example, means *learning how to learn*, and metamodeling means modeling how to model. The prefix meta can be applied multiple times. *Meta-metamodeling*, for instance, means *modeling how to metamodel*. The prefix *meta* may also be applied several times. Consider the term *meta-metamodeling*, which stands for modeling how to metamodel. The language for defining how to build metamodels is called *meta-metamodel*, a model that represents *all valid metamodels*. However, as models are abstractions, metamodels and meta-metamodels only define the abstract syntaxes of the languages they represent. Concrete syntaxes and semantics are currently not covered by these models and must be specified with additional artifacts.
+
+Metamodels define modeling concepts and their properties using classes, attributes, and associations. However, modeling constraints are only partially described (see Chapter 6). UML class diagrams can define multiplicity constraints for attributes, association ends, and types. A *constraint language* can define more complex validation rules based on these metamodel elements. OCL is the language of choice for defining constraints beyond simple multiplicity and type constraints, and it can also be used for metamodels. Current metamodeling languages based solely on class diagrams cannot express constraints like "*A model element must have a unique name." However, this constraint is easily specifiable in OCL.
+
+Metamodeling frameworks allow specifying metamodels using dedicated editors and generating modeling editors from them for *defining* and *validating* models. Metamodels are used (i) *constructively* as *a set of production rules* for building models and (ii) *analytically* as *a set of constraints* a model must fulfill to conform to its metamodel.
+
+All language aspects beyond abstract syntax are defined on the basis of metamodel, as illustrated in Figure 7.1. This chapter first defines the abstract syntax of a modeling language, including constraints, and then defines graphical and textual concrete syntaxes based on it. We also discuss current technologies available on top of Eclipse for developing these syntactical aspects.
+
+![Figure 7.1: Metamodel-centric language design.](./07.%20CHAPTER%207%20Developing%20your%20Own%20Modeling%20Language/Figures/Figure%207.1.png)
+
+*Transformation engineering*, based on modeling language metamodels, is the subject of the next two chapters (Chapter 8 for model-to-model transformations and Chapter 9 for model-to-text transformations). Transformations formalize the semantics of a modeling language using different approaches, as introduced in Chapter 6: (i) *denotational semantics* by mapping the language to a formal language; (ii) *operational semantics* by defining a model simulator; or (iii) *translational semantics* by defining a code generator for executable code. The first two approaches use model-to-model transformations, while the latter is often implemented as model-to-text transformations.
+
+> **Résumé** :
+> 
+> * This chapter focuses on developing a new modeling language, specifically defining its abstract and concrete syntax.
+> 
+> * Metamodels define valid models of a modeling language, similar to how grammars define valid sentences. Metamodeling languages, based on object-oriented modeling concepts, are used to model modeling languages.
+> 
+> * The prefix "meta" implies defining the technique itself, as seen in metalearning (learning how to learn) and metamodeling (modeling how to model). The prefix can be applied multiple times, as in meta-metamodeling, which models how to metamodel, representing abstract syntaxes but not concrete syntaxes or semantics.
+> 
+> * OCL is the preferred language for defining complex modeling constraints beyond multiplicity and type constraints, as it can express constraints like "A model element must have a unique name."
+> 
+> * Metamodeling frameworks enable model specification and editor generation for defining and validating models. Metamodels are used constructively for building models and analytically for enforcing constraints.
+> 
+> * This chapter defines the abstract syntax of a modeling language, including constraints, and then defines graphical and textual concrete syntaxes based on it.
+> 
+> * Transformation engineering, using modeling language metamodels, formalizes modeling language semantics through denotational, operational, and translational approaches.
