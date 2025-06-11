@@ -1,10 +1,6 @@
 Title: Sans titre  
 Author:
 
-# Table of Contents
-
-[TOC]
-
 # CHAPTER 6 Modeling Languages at a Glance
 
 Modeling languages are conceptual tools that let designers formalize their thoughts and visualize reality explicitly, whether textually or graphically. This chapter describes the main features of modeling languages, considering general-purpose languages (GPLs), domain-specific languages (DSLs), and the intermediate solutions that customize GPLs for specific purposes.
@@ -604,3 +600,27 @@ Changing the metamodel when instances exist may cause trouble if the changes bre
 > * Testing metamodels may require changes to represent and formalize the language, including marking classes, setting references, restricting feature multiplicities, specializing feature types, and introducing new elements.
 > 
 > * Changing the metamodel when instances exist can cause trouble, potentially preventing models from being loadable in modeling editors. Chapter 10 discusses how to handle metamodel/model co-evolution problems.
+
+### 7.3.2 METAMODELING IN ECLIPSE
+
+After defining metamodels using UML class and object diagrams, we discuss how EMF supports these tasks. EMF has its own metamodeling language, Ecore, and tool support for defining and instantiating Ecore-based metamodels. This subsection provides a brief overview of EMF and its core functionalities. For more information, refer to dedicated EMF resources on our book website.
+
+Ecore’s modeling concepts are depicted in Figure 7.3. Ecore comprises `EClassifiers` (`EClasses, EDataTypes, and EEnums`) and `EStructuralFeatures` (`EAttributes` and `EReferences`). `EClasses` are first-class citizens in Ecore-based metamodels. They can have multiple `EReferences` and `EAttributes`, and multiple superclasses. `EAttributes` are part of a specific `EClass`, have lower and upper bounds, and can be ordered and unique. `EAttribute` types are either simple `EDataTypes` or `EEnums` with restricted values. `EString`, `EBoolean`, `EInt`, and `EFloat` are part of Ecore’s default data type set. `EReferences` are part of a specific `EClass` and have lower and upper bounds. They refer to `EClasses` and can be bi-directional with opposite `EReferences`. `EReferences` can be ordered, unique, and containment references, meaning all contained objects are deleted if the container is deleted. `EPackages` group related `EClasses`, `EEnums`, `EDataTypes`, and other `EPackages`.
+
+![Figure 7.3: Overview of Ecore’s main language concepts.](./07.%20CHAPTER%207%20Developing%20your%20Own%20Modeling%20Language/Figures/Figure%207.3.png)
+
+For specifying Ecore-based metamodels in Eclipse, several concrete syntaxes are available. EMF has a tree-based editor for modeling metamodels in their abstract syntax, similar to object diagrams, but using the containment hierarchy to form an explicit tree structure. However, working with the abstract syntax doesn’t scale, so editors supporting concrete syntaxes for Ecore are recommended. Several graphical editors for Ecore, such as the Ecore tools project, allow modeling Ecore metamodels using a similar syntax as UML class diagrams. Other approaches define Ecore metamodels textually, like KM3 and Emfatic.
+
+<font style="color: #006ec7 ">OCL support for Ecore.</font>  &emsp; 
+
+ Several plugins in Eclipse define OCL constraints for Ecore-based metamodels. Eclipse OCL, a project implementing the OCL standard, includes OCLinEcore, which defines invariants for Ecore-based metamodels and evaluates constraints within modeling editors. The Dresden OCL Toolkit provides further support for defining and evaluating invariants for EMF-based models. The Epsilon Validation Language of the Epsilon project, inspired by OCL, has a slightly different syntax compared to Java and syntax extensions for practical aspects of model validation, such as customizable error messages.
+
+> **Résumé** :
+> 
+> * EMF supports metamodeling using Ecore and tool support for defining and instantiating Ecore-based metamodels.
+> 
+> * Ecore comprises `EClassifiers` (`EClasses`, `EDataTypes`, and `EEnums`) and `EStructuralFeatures` (`EAttributes` and `EReferences`). `EClasses` can have multiple `EReferences` and `EAttributes`, and multiple superclasses. `EAttributes` have lower and upper bounds, and `EReference` types can be bi-directional and containment references.
+> 
+> * EMF provides a tree-based editor for modeling metamodels in their abstract syntax, but concrete syntaxes are recommended for scalability. Graphical editors like the Ecore tools project and textual approaches like KM3 and Emfatic are available.
+> 
+> * Eclipse OCL, Dresden OCL Toolkit, and Epsilon Validation Language support defining and evaluating OCL constraints for Ecore-based metamodels.
