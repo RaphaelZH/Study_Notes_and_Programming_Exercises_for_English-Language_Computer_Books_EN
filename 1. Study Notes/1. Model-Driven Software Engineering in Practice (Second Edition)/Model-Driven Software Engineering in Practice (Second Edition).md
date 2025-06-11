@@ -529,232 +529,48 @@ To make the metamodel development process more concrete, it’s now being used t
 
 #### Step 1: Modeling Domain Analysis
 
-Several sources of information may be exploited for finding the appropriate
-set of modeling concepts. Which sources to tap depends on the purpose of the
-modeling language that should be developed. If a modeling language should
-be defined for abstracting from low-level program code, a major source of
-information may be existing programs. For example, recurring patterns found
-in the program code may be abstracted to modeling concepts. If the modeling
-language is tailored to a specific domain, document analysis or expert
-interviews may be a proper choice to derive the necessary modeling concepts.
-All these activities should lead to concrete reference examples which are
-beneficial for communication with domain experts, testing the modeling
-language and code generators, etc. Thus, we show how the reference example
-approach is used to develop the modeling concepts of the sWML language in
-the following.
-Let us assume that a first sketch of a Web application model (cf. Figure
-7.3) has been created during a workshop, based on an already existing Web
-application of a conference management system. For instance, the Web
-application model shows which talks and tutorials are offered by the
-conference. Based on this model sketch, we elaborate on the purpose,
-realization, and content of sWML.
-Figure 7.3: sWML model sketch.
-Language purpose. sWML should allow the modeling of the content layer
-and the hypertext layer of Web applications. The content layer defines the
-schema of the persistent data which is presented to the user by the hypertext
-layer in form of Web pages. In addition, the hypertext layer defines the
-navigation between Web pages and the interaction with the content layer,
-e.g., querying content from the database.
-Language realization. To support different sWML user types, a graphical
-syntax should be defined which may be used for discussing with domain
-experts and for reasoning on the structure of the hypertext layer and the
-content layer. However, for making a smooth transition from the standard
-development process based on programming languages to the model-driven
-approach, additionally, a textual syntax should be provided for developers
-who are familiar and used to working with text-based languages.
-Language content. A sWML model consists of a content layer and a
-hypertext layer which reflects the previously mentioned purpose of the
-language.
-A content model contains an unrestricted number of classes. Classes
-have a unique name (e.g., Tutorial) and multiple attributes (e.g.,
-Tutorial.title). Attributes have an assigned name and type. For instance,
-permitted types are: String, Integer, Float, Boolean, and Email. For each
-class, one attribute has to be selected as the representative attribute which is
-not explicitly indicated in the concrete syntax to keep the syntax concise.
-Hypertext models contain different kinds of pages, whereas each page
-has a name. Exactly one page is the homepage of the Web application. Later
-on, this page (and all directly linked pages of the homepage) can be accessed
-by all other pages of the Web application. Pages are subdivided into static
-and dynamic pages. Static pages represent only static content, e.g., a
-collection of useful links. In contrast, dynamic pages represent dynamically
-generated content coming from the database. Thus, a dynamic page always
-has a relationship to a class defining the type of the displayed instances. The
-relationship to the used classes is shown in parentheses under the name of the
-page. Dynamic pages are further subdivided into details pages and index
-pages having specific icons. Index pages show all instances of a class in
-terms of a list, e.g., a list consisting of all tutorials of the conference, showing
-only the representative attribute of the instances. In contrast, details pages
-always show exactly one instance, e.g., one tutorial, with all its attributes.
-Links represent the navigation between pages by pointing from a source
-page to a target page. On the source page, the link is visualized to the user.
-Thus, a page usually knows its links pointing to other pages but it is unaware
-of incoming links. Two kinds of links are distinguished: (i) non-contextual
-links (NCLinks) are standard links, which do not transport any information,
-e.g., a link to a static page; and (ii) contextual links (CLinks) transport
-information to the target page, e.g., to transfer data needed to compute the
-content of the target page, e.g., to select the instance shown by a details page.
-Essence of the abstract syntax. The first version of the language content
-description comprises different kinds of information. Primarily, the modeling
-concepts are introduced by defining their properties which is a necessary
-input for developing the abstract syntax. But sometimes other aspects such as
-the notation and semantics of the modeling concepts are discussed. Thus,
-from this description, the essence of the abstract syntax has to be filtered out,
-before the first version of the metamodel can be built. As a result, a list of
-concepts and their properties is produced. For our example, the table shown
-in Figure 7.4 summarizes the most important sWML concepts and their
-properties. In particular, intrinsic properties, having only primitive data
-values, must be distinguished from extrinsic properties, which represent
-relationships between modeling concepts.
-Step 2: Modeling Language Design
-The modeling concept table shown in Figure 7.4 guides the design of the
-metamodel as illustrated in Figure 7.5 for sWML. First, concepts are
-transformed to classes, intrinsic properties into attributes, and extrinsic
-properties are defined as associations between classes. Having this initial
-structure, one can reason about further modeling constraints. For attributes,
-types have to be introduced such as String, Integer, and Boolean. If there is a
-range of possible values, enumerations may be defined as for the
-SWMLTypes (cf. Figure 7.5). For the association ends, upper and lower
-bounds of multiplicities have to be set properly.
-Figure 7.4: Modeling concept table for sWML.
-Furthermore, one has to reason about the containment structure of the
-metamodel, because elements in models are often nested. For example,
-consider the content layer which contains classes, whereas classes again
-contain attributes. This containment structure has to be defined in the
-metamodel by declaring some association ends as compositions. The most
-important consequence of defining association ends as compositions is that
-when the container element is deleted all contained elements are deleted, too.
-To enhance readability and extensibility of the language definition,
-inheritance relationships between classes are introduced to reuse attributes
-and associations (cf. abstract classes for pages and links). For this,
-refactorings for improving the structure of class diagrams may be applied on
-metamodels as well. For example, shifting up attributes from subclasses to
-superclasses, extracting superclasses from existing classes, or substituting an
-association with an explicit class to define additional properties for the
-association are recurring operations on metamodels. At the end of the day,
-metamodels should fulfill the well-known quality attributes of object-oriented
-modeling.
-Figure 7.5: Metamodel for sWML.
-Discourse. For defining a modeling concept, we have the following three
-possibilities in metamodeling languages: define it as a class, attribute, or
-association. Consider for instance the homepage concept in our example
-language. The first option (using a class) would result in an explicit class
-HomePage. However, if we would like to switch a homepage into a normal
-page, we have to delete the homepage, create a new page, and set all features
-using the previous values of the homepage for this new page. The second
-option (using an attribute) would result in having a Boolean attribute in the
-class Page, e.g., called isHomepage. Thus, for each page we can dynamically
-decide if the page represents a homepage or not. Of course, we may need a
-modeling constraint which ensures that for each Web application, only one
-homepage exists. Using the third option (an association), as we have done in
-the metamodel shown in Figure 7.5, allows us to mark exactly one page as
-the homepage within the set of all pages contained by the hypertext layer.
-Thus, we can dynamically change the homepage and do not need to add an
-additional well-formedness rule. This discussion shows that when deciding
-how to represent a modeling concept in the metamodel, one has to reason
-about the advantages and disadvantages of using classes, attributes, or
-associations to represent the concept. This decision has a major impact on the
-actual modeling possibilities influencing the modeling experience the users
-will have. Thus, it is important to consider feedback from users to improve
-the modeling language by switching between different metamodeling
-patterns.
-Note that if a more powerful content modeling language is required, one
-option is to import existing metamodels as, e.g., the class diagram part of the
-UML metamodel, instead of remodeling the complete content modeling
-language from scratch.
-Modeling constraints. As already mentioned, several constraints cannot be
-defined by current metamodeling languages only in terms of graphical
-elements. Thus, OCL is employed to define additional constraints as so-
-called well-formedness rules. These rules are implemented in OCL as
-additional invariants for the metamodel classes and have to hold for every
-model. Thus, the constraints are defined on the metamodel and validated on
-the model level.
-By introducing OCL invariants for metamodel classes, a modeling
-language is more precisely defined, leading to models with higher quality.
-This is especially important when employing models for code generation.
-Otherwise, some problems may not be detected until the final implementation
-is generated where the problems may manifest as compile-time and runtime
-errors, or remain undetected in the worst case.
-In the following, we introduce some examples for well-formedness rules
-for sWML in natural language and subsequently show the corresponding
-OCL invariants.
-Rule 1: A Class must have a unique name within the Content Layer to avoid
-name clashes.
-context ContentLayer inv:
-self.classes -> forAll(x,y | x <> y implies x.name <> y.name)
-Rule 2: The representative Attribute of a Class must be taken out of the set of
-Attributes contained by the Class.
-context Class inv:
-self.attributes -> includes(self.representativeAttribute)
-Rule 3: A page must not contain a non-contextual link to itself, because
-navigating such a link would result in exactly the same page as shown before
-the navigation.
-context Page inv: not self.links -> select(l | l.oclIsTypeOf(NCLink))
--> exists (l|l.target = self)
-Besides well-formedness rules, modeling guidelines and best practices
-can be defined with OCL invariants. For instance, naming conventions may
-be defined: the following rule imposes that all attribute names have to start
-with a lower case letter.
-context Attribute inv: if self.name.size() >= 1
-then self.name.substring(1,1).toLower() = self.name.substring(1,1)
-else false
-endif
-This last example requires that a class should not have more than six
-attributes:
-context Class inv: self.attributes -> size() < 7
-Step 3: Modeling Language Validation
-Early validation of the abstract syntax can be achieved simply by manual
-instantiantion of the metamodel. In this case, we can immediately assess
-whether the designed metamodel is appropriately covering the modeling
-domain or not. Indeed, since we are using object-oriented metamodeling
-languages like MOF to define metamodels, models consist of a collection of
-objects. Thus, it is common to represent models by UML object diagrams (cf.
-also Chapter 6). In UML, object diagrams allow the instantiation of class
-diagrams by using:
-• objects for instantiating Classes;
-• values for instantiating Attributes; and
-• links for instantiating Associations.
-Object diagram notation. The notation of object diagrams is summarized in
-Figure 7.6. In the upper half of this figure, a class diagram is shown which is
-instantiated in the lower half by using an object diagram. Objects are notated
-similarly to classes using a rectangle, with the difference that in the first
-compartment the identifier of the object is given in combination with its type
-(e.g., a01 : ClassA in Figure 7.6). Of course, the type has to correspond to the
-name of a class in the metamodel. Attribute values are defined in the second
-compartment in so-called attribute slots. Links are notated like associations
-between objects.
-Figure 7.6: Object diagrams as instances of class diagrams.
-For instantiating models from metamodels the same rules as
-instantiating object diagrams from class diagrams apply. First, only concrete
-classes can be instantiated. Second, data types such as enumerations act only
-as constraints for the attribute values, but cannot be instantiated. Third, the
-meta-features of attributes and references, i.e., multiplicities and uniqueness
-constraints, act only as constraints for the object diagrams. Finally, the
-containment references are also just represented as links in object diagrams.
-However, if a container object is deleted all directly and indirectly contained
-elements, i.e., objects linked by containment references, are automatically
-deleted. To enhance the readability, containment links are shown in the
-following by using the black diamond notation.
-In Figure 7.7, the object diagram for an excerpt of the example model
-(cf. Figure 7.3) is shown. To better illustrate the relationships between (i)
-metamodel and model level and (ii) abstract and concrete syntax, the
-identifiers of the objects are annotated in the concrete syntax as special labels
-to the model elements. As can be seen in Figure 7.7, all model elements are
-represented as objects in the abstract syntax.
-Figure 7.7: sWML model expressed using both the concrete and abstract syntax of the language.
-Feedback for metamodel improvements. When testing metamodels, several
-changes may be identified which are needed to represent and formalize the
-language properly. For example, the following simple modifications are quite
-common: mark classes as concrete/abstract, set references as
-containment/non-containment, restrict/enlarge multiplicities of features, make
-feature types more specialized/generalized, or just delete existing and
-introduce new elements. Not only simple modifications may be required, but
-also more complex changes such as refactorings for switching between
-metamodeling patterns, as explained before, or for the introduction of design
-patterns, e.g., the composition pattern, may be needed to improve the
-modeling language definition.
-Note that having to change the metamodel in cases where instances of
-them already exist may lead to trouble when the changes break the
-conformance relationships between the metamodel and the models. For
-instance, the models may be no longer loadable in the modeling editors if
-metamodel elements are renamed or deleted. How to deal with such
-metamodel/model co-evolution problems is discussed in Chapter 10.
+Several sources of information can be exploited to find appropriate modeling concepts. The choice of sources depends on the purpose of the modeling language. For abstracting from low-level program code, existing programs can be a major source of information. Recurring patterns in the code can be abstracted to modeling concepts. For a specific domain, document analysis or expert interviews may be appropriate. These activities should lead to concrete reference examples for communication with domain experts, testing the language and code generators, etc.
+
+<font style="color: #006ec7 ">Essence of the abstract syntax.</font>  &emsp; The first version of the language content description includes various information. It primarily introduces modeling concepts by defining their properties, which is crucial for developing the abstract syntax. Sometimes, other aspects, like notation and semantics, are also discussed. To build the first version of the metamodel, the essence of the abstract syntax must be filtered out, resulting in a list of concepts and their properties.
+
+> **Résumé** :
+> 
+> * Existing programs, document analysis, and expert interviews can inform modeling concepts, providing reference examples for communication, testing, and code generation.
+> 
+> * The first version of the language content description introduces modeling concepts and their properties, which are essential for developing the abstract syntax.
+
+#### Step 2: Modeling Language Design
+
+First, concepts are transformed into classes, intrinsic properties into attributes, and extrinsic properties are defined as associations between classes. This initial structure allows reasoning about further modeling constraints. Attributes require types like String, Integer, and Boolean. If there’s a range of possible values, enumerations may be defined. For the association ends, upper and lower bounds of multiplicities must be set properly.
+
+Furthermore, one must reason about the containment structure of the metamodel, as elements in models are often nested. For instance, the content layer contains classes, which contain attributes. This structure must be defined in the metamodel by declaring association ends as compositions. The most significant consequence is that deleting the container element deletes all of its contained elements.
+
+To improve readability and extendability, inheritance relationships between classes reuse attributes and associations (e.g., abstract classes for pages and links). Refactorings on metamodels can improve class diagram structure. Shifting attributes from subclasses to superclasses, extracting superclasses from existing classes, or substituting associations with explicit classes to define additional properties are recurring operations. Metamodels should fulfill object-oriented modeling quality attributes.
+
+<font style="color: #006ec7 ">Discourse.</font>  &emsp; For defining a modeling concept, metamodeling languages offer three options: classes, attributes, or associations. When choosing a representation, consider the advantages and disadvantages of each. This decision significantly impacts the modeling possibilities and user experience. User feedback can help improve the language by switching between patterns.
+
+If a more powerful content modeling language is needed, import existing metamodels, like the class diagram part of the UML metamodel, instead of remodeling the language from scratch.
+
+<font style="color: #006ec7 ">Modeling constraints. </font>  &emsp; Several constraints cannot be defined by current metamodeling languages only in terms of graphical elements. Therefore, OCL defines additional constraints as well-formedness rules. These rules are implemented as additional invariants for metamodel classes and must hold for every model. Thus, constraints are defined on the metamodel and validated on the model level.
+
+Introducing OCL invariants for metamodel classes precisely defines a modeling language, leading to higher-quality models, especially important for code generation. Otherwise, problems may go undetected until the final implementation, manifesting as compile-time or runtime errors, or remain undetected in the worst case.
+
+OCL invariants can define well-formedness rules, modeling guidelines, and best practices, including naming conventions.
+
+> **Résumé** :
+> 
+> * Concepts are transformed into classes, intrinsic properties into attributes, and extrinsic properties into associations. Attributes require types and enumerations, while association ends require multiplicity bounds.
+> 
+> * The metamodel’s containment structure, defining nested elements like classes and attributes, necessitates composition associations, ensuring container deletion deletes contained elements.
+> 
+> * Inheritance relationships between classes reuse attributes and associations, improving readability and extendability. Refactoring metamodels, such as shifting attributes and extracting superclasses, can enhance class diagram structure.
+> 
+> * Metamodeling languages offer classes, attributes, and associations for defining modeling concepts, each with advantages and disadvantages impacting modeling possibilities and user experience.
+> 
+> * Import existing metamodels for more powerful content modeling.
+> 
+> * OCL defines additional constraints as well-formedness rules, implemented as invariants for metamodel classes, ensuring model validity.
+> 
+> * OCL invariants for metamodel classes precisely define a modeling language, improving model quality and aiding code generation.
+> 
+> * OCL invariants define well-formedness rules, modeling guidelines, and best practices.
