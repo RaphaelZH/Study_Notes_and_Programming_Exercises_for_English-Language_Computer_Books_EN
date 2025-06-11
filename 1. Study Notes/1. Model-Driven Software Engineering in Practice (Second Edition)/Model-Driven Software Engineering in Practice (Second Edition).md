@@ -574,3 +574,33 @@ OCL invariants can define well-formedness rules, modeling guidelines, and best p
 > * OCL invariants for metamodel classes precisely define a modeling language, improving model quality and aiding code generation.
 > 
 > * OCL invariants define well-formedness rules, modeling guidelines, and best practices.
+
+#### Step 3: Modeling Language Validation
+
+Early validation of the abstract syntax can be achieved by manually instantiating the metamodel. This allows immediate assessment of whether the designed metamodel covers the modeling domain. Since object-oriented metamodeling languages like MOF define metamodels, models consist of objects. UML object diagrams represent models by instantiating class diagrams using:
+
+* *objects* for *Classes*;
+
+* *values* for *Attributes*; and
+
+* *links* for *Associations*.
+
+<font style="color: #006ec7 ">Object diagram notation.</font>  &emsp; Objects are notated like classes using a rectangle. The first compartment contains the object’s identifier and type, which must correspond to a class name in the metamodel. The second compartment defines attribute values in attribute slots. Links are notated as associations between objects.
+
+For instantiating models from metamodels, the same rules as instantiating object diagrams from class diagrams apply. First, only concrete classes can be instantiated. Second, data types like enumerations constrain attribute values but cannot be instantiated. Third, meta-features of attributes and references (multiplicities and uniqueness constraints) constrain object diagrams. Finally, containment references are represented as links in object diagrams. Deleting a container object automatically deletes all directly and indirectly contained elements. To enhance readability, containment links are shown with the black diamond notation.
+
+<font style="color: #006ec7 ">Feedback for metamodel improvements.</font>  &emsp; When testing metamodels, several changes may be needed to represent and formalize the language properly. Common modifications include marking classes as concrete/abstract, setting references as containment/non-containment, restricting/enlarging feature multiplicities, specializing/generalizing feature types, or deleting/introducing new elements. More complex changes, such as refactoring for switching between metamodeling patterns or introducing design patterns like the composition pattern, may also be required to improve the language definition.
+
+Changing the metamodel when instances exist may cause trouble if the changes break the metamodel’s conformance relationships with the models. For instance, renaming or deleting metamodel elements may prevent the models from being loadable in modeling editors. Chapter 10 discusses how to handle such metamodel/model co-evolution problems.
+
+> **Résumé** :
+> 
+> * Early validation of abstract syntax can be achieved by manually instantiating the metamodel. UML object diagrams represent models by instantiating class diagrams using objects, values, and links.
+> 
+> * Objects are notated like classes using rectangles with identifiers, types, and attribute values. Links are associations between objects.
+> 
+> * Instantiating models from metamodels follows rules similar to instantiating object diagrams from class diagrams. Concrete classes can be instantiated, while data types and meta-features constrain object diagrams.
+> 
+> * Testing metamodels may require changes to represent and formalize the language, including marking classes, setting references, restricting feature multiplicities, specializing feature types, and introducing new elements.
+> 
+> * Changing the metamodel when instances exist can cause trouble, potentially preventing models from being loadable in modeling editors. Chapter 10 discusses how to handle metamodel/model co-evolution problems.
