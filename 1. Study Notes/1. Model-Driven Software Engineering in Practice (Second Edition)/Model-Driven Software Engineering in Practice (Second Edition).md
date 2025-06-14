@@ -5,33 +5,33 @@ Author:
 
 Models are dynamic entities that undergo various processes during an MDE process. These processes include *merging*, *aligning*, *refactoring*, *refining*, and *translating* models.
 
-All these model operations are implemented as model transformations, either Model-to-Model (M2M) or Model-to-Text (M2T) transformations (the latter is the topic of the next chapter). In M2M, the input and output are models; in M2T, the output is a text string. Text-to-Model (T2M) transformations have a text string as input and a model as output; they’re typically applied in reverse engineering (cf. Chapter 3).
+All these model operations are implemented as model transformations, either Model-to-Model (M2M) or Model-to-Text (M2T) transformations. In M2M, the input and output are models; in M2T, the output is a text string. Text-to-Model (T2M) transformations have a text string as input and a model as output; they’re typically applied in reverse engineering (cf. Chapter 3).
 
 Many efforts have been spent designing specialized languages for specifying M2M transformations, ranging from textual to visual, declarative to imperative, and semi-formal to formal, in the last decade. We review most of them in the next sections and focus on two protagonists to illustrate their main characteristics.
 
 > **Résumé** :
 > 
-> * Models are dynamic entities undergoing ***merging***, ***alignment***, ***refactoring***, ***refinement***, and ***translation*** within an MDE process.
+> Models are dynamic entities undergoing ***merging***, ***alignment***, ***refactoring***, ***refinement***, and ***translation*** within an MDE process.
 > 
-> * Model transformations, implemented as Model-to-Model (M2M) or Model-to-Text (M2T), convert models to models or text strings, respectively. Text-to-Model (T2M) transformations, used in reverse engineering, convert text strings to models.
+> Model transformations, implemented as Model-to-Model (M2M) or Model-to-Text (M2T), convert models to models or text strings, respectively. Text-to-Model (T2M) transformations, used in reverse engineering, convert text strings to models.
 > 
-> * Various M2M transformation languages have been designed, ranging from textual to visual and declarative to imperative. Two languages are highlighted to illustrate their characteristics.
+> Various M2M transformation languages have been designed, ranging from textual to visual and declarative to imperative. Two languages are highlighted to illustrate their characteristics.
 
 ## 8.1 MODEL TRANSFORMATIONS AND THEIR CLASSIFICATION
 
-Transformations are a key software engineering technique since the introduction of high-level programming languages compiled into assembly language. Model transformations are equally crucial in MDE and come in various flavors to address different tasks.
+Transformations are a key software engineering technique since the introduction of high-level programming languages compiled to assembler. Model transformations are equally crucial in MDE and come in various flavors to address different tasks.
 
 An M2M transformation is a program that takes one or more models as input and produces one or more models as output. *One-to-one* transformations are usually sufficient, but *one-to-many*, *many-to-one*, or *many-to-many* transformations may be required, for example, in a model merge scenario to unify multiple class diagrams.
 
-Besides classifying model transformations based on input and output models, another dimension is whether they’re *exogenous* (between models from different languages) or *endogenous* (within models written with the same language). An example of an exogenous transformation is transforming a platform-independent model (e.g., a UML model) to a platform-specific model (e.g., a Java model). A well-known example of an endogenous transformation is model refactoring, which involves restructuring models to improve quality.
+Besides classifying model transformations based on input and output models, another dimension is whether the transformation is between models from different languages (*exogenous*) or within the same language (*endogenous*). An example of an exogenous transformation is transforming a platform-independent model (e.g., a UML model) to a platform-specific model (e.g., a Java model). An example of an endogenous transformation is model refactoring, which involves restructuring models to improve quality.
 
 Exogenous model transformations are useful for both *vertical* and *horizontal* transformations. Vertical transformations change the abstraction level of the input and output models, as seen in the UML to Java scenario. Horizontal transformations change the abstraction level of the input and output models, but they remain similar. For example, horizontal transformations are used for model exchange between modeling tools, such as translating a UML class diagram to an ER diagram.
 
-Two central execution paradigms for model transformations emerged in the last decade, as compared in Figure 8.1. First, *out-place* transformations *generate* the output model from scratch (Figure 8.1a), suitable for exogenous transformations. Second, *in-place* transformations *rewrite* the model by creating, deleting, and updating elements in the input model (Figure 8.1b), *perfect* for endogenous transformations like refactoring.
+Two central execution paradigms for model transformations emerged in the last decade, as compared in Figure 8.1. First, *out-place* transformations *generate* the output model from scratch (Figure 8.1a), suitable for exogenous transformations. Second, *in-place* transformations *rewrite* the model by creating, deleting, and updating elements in the input model (Figure 8.1b), perfect for endogenous transformations like refactorings.
 
 ![Figure 8.1: Different kinds of model transformations: (a) exogenous out-place vs. (b) endogenous in-place.](./08.%20CHAPTER%208%20Model-to-Model%20Transformations/Figures/Figure%208.1.png)
 
-In the following sections, we present how to specify *exogenous* transformations as *out-place* transformations using ATL and *endogenous* transformations as *in-place* transformations using graph transformation languages.
+We present how to specify *exogenous* transformations as *out-place* transformations using ATL and *endogenous* transformations as *in-place* transformations using graph transformation languages.
 
 > **Résumé** :
 > 
@@ -39,7 +39,7 @@ In the following sections, we present how to specify *exogenous* transformations
 > 
 > * M2M transformations convert models into other models, with ***one-to-one*** transformations being the most common, but ***one-to-many***, ***many-to-one***, and ***many-to-many*** transformations are also possible.
 > 
-> * Model transformations are classified by input/output models and language. ***Exogenous*** transformations involve different languages, while ***endogenous*** transformations involve the same language, such as model refactoring.
+> * Model transformations are classified based on input/output models and language. ***Exogenous*** transformations involve different languages, while ***endogenous*** transformations occur within the same language, such as model refactoring.
 > 
 > * Exogenous model transformations are useful for both ***vertical*** and ***horizontal*** transformations, enabling model exchange between different modeling tools.
 > 
