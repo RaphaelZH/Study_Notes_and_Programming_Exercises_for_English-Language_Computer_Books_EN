@@ -143,7 +143,7 @@ Graph transformation rules can be applied fully automatically by the graph trans
 
 <font style="color: #006ec7 ">Advanced graph transformations techniques.</font> &emsp; Several advanced techniques exist for specifying, executing, and analyzing graph transformations.
 
-**Alternative notations.** Transformation rules have been defined in the abstract syntax of the modeling language. Using the concrete syntax may improve readability, but only a few graph transformation tools provide this capability. Some approaches use a condensed graphical notation by merging NACs, LHS, and RHS into one graph with annotations for forbidden, preserved, deleted, or created elements. Others use a textual concrete syntax to define the rules. We discuss these approaches in the end of this section.
+**Alternative notations.** Transformation rules have been defined in the abstract syntax of the modeling language. Using the concrete syntax may improve readability, but only a few graph transformation tools provide this capability. Some approaches use a condensed graphical notation by merging Negative Application Conditions (NACs), LHS, and RHS into one graph with annotations for forbidden, preserved, deleted, or created elements. Others use a textual concrete syntax to define the rules. We discuss these approaches in the end of this section.
 
 **Rule scheduling.** A graph transformation system consists of rules. The order in which they’re executed is non-deterministic until no rule matches. This can lead to multiple output models. However, a deterministic execution is preferred. Two extensions support this. First, define *priorities* for rules. If multiple rules match, the highest/lowest priority rule is executed. Second, use programming-like control structures, called graph transformation units, to *orchestrate* rules. These structures allow for loops, conditional branches, and so on. These approaches are called *programmable graph transformations*.
 
@@ -171,7 +171,7 @@ Graph transformation rules can be applied fully automatically by the graph trans
 > 
 > * Graph transformations are popular for their visual and formal nature, making them intuitive and amenable to analysis. They can describe operational semantics of modeling languages.
 > 
-> * A ***graph grammar*** consists of transformation rules and an initial graph. The rules, defined by left-hand side and right-hand side graphs, specify actions that delete, add, or preserve elements based on their presence in the LHS and RHS.
+> * A ***graph grammar*** consists of transformation rules and an initial graph. The rules, defined by left-hand side and right-hand side graphs, specify actions that delete, add, or preserve elements based on their presence in the left-hand side (LHS) and right-hand side (RHS).
 > 
 > * A morphism of the LHS is found in the initial graph, and a rule is applied to the selected match by substituting it with the RHS.
 > 
@@ -246,3 +246,69 @@ Information can be provided by the modeler using model augmentations, the conven
 > * Modeling languages abstract from technology details, requiring additional information for executable software.
 > 
 > * Code generation from models can be achieved through model augmentations, convention-over-configuration, or by leaving details open and filling them in at the code level. The first approach allows for more control over the derived implementation, while the second approach is more straightforward but limits optimization.
+
+## 9.2 CODE GENERATION THROUGH PROGRAMMING LANGUAGES
+
+A code generator can be implemented based on MDE principles or a traditional programming approach. In the latter case, it’s a program that uses the model API generated from the metamodel to process input models and print code statements to a file using standard stream writers provided by the programming language’s APIs.
+
+The model API is implemented in EMF using an M2T transformation that reads an Ecore-based metamodel and generates a Java class for each Ecore class. The Ecore-to-Java mapping is straightforward, a design goal of Ecore. For each metaclass feature, corresponding getter and setter methods are generated on the Java side. This allows reading, modifying, and creating a model from scratch using generated Java code instead of modeling editors. For more information on using the generated model APIs and the powerful EMF API, refer to the interested reader.
+
+Before discussing specific M2T transformation languages in Section 9.3, we show how a GPL can be used to develop a code generator. This demonstrates: (i) processing models using a model API generated from the metamodel and (ii) features needed for a code generator.
+
+The following phases must be supported by a code generator, as illustrated in Figure 9.1.
+
+![Figure 9.1: Code generation through programming languages: Java code that generates Java code.](./09.%20CHAPTER%209%20Model-to-Text%20Transformations/Figures/Figure%209.1.png)
+
+1. **Load models**: Models must be deserialized from their XMI representation to an in-memory object graph. Current metamodeling framework APIs offer specific operations for this.
+
+2. **Produce code**: Use the model API to process models and collect the necessary model information for generating code. Typically, the object graph is traversed from the root element of a model to its leaf elements.
+
+3. **Write code**: Code is saved in String variables and persisted to files via streams.
+
+This approach requires no additional programming skills. It suffices to know the chosen programming language and the model API. No additional tools are needed for design or runtime. However, it has drawbacks.
+
+* **Intermingled static/dynamic code:** *Static code*, generated for every model element, and *dynamic code* derived from model information, such as class and variable names, are not separated.
+
+* **Non-graspable output structure:** The code generator specification doesn’t clearly show the output structure. The generated code is embedded in the producing code, so the control structure is explicit but the output format isn’t. This issue is also seen in other GPL-based generator approaches, like Java Servlets1 for producing HTML code with embedded statements.
+
+* **Missing declarative query language:** No declarative query language exists for accessing model information. This leads to unnecessary code from iterators, loops, conditions, and type casts. Also, knowledge of the generated model API is required. For instance, getter methods must be used to access model element features instead of querying feature values using metamodel names.
+
+* **Missing reusable base functionality:** Code must be developed to read input models and persist output code repeatedly for each code generator.
+
+DSLs, developed to eliminate disadvantages, generate text from models. This led to the OMG standard *MOF Model to Text Transformation Language* (MOFM2T). We show how a Java-based code generator can be re-implemented in a dedicated M2T transformation language and discuss its benefits.
+
+> **Résumé** :
+> 
+> * Code generators can be implemented using MDE principles or a traditional programming approach. The latter approach involves using a program to process input models and generate code statements.
+> 
+> * The model API is realized in EMF using an M2T transformation that generates Java classes from Ecore classes, allowing for direct model manipulation.
+> 
+> * A GPL is used to develop a code generator, demonstrating model processing and required features.
+> 
+> * Code generator must support phases illustrated in Figure 9.1.
+> 
+>	 * Models are deserialized from XMI to an in-memory object graph.
+> 
+>	 * Model API processes models to generate code.
+> 
+>	 * Code is saved in String variables and persisted to files.
+> 
+> * The approach requires only programming language knowledge and model API familiarity, eliminating the need for additional programming skills or tools. However, it also has several drawbacks.
+> 
+>	 * Static and dynamic code are intermingled, lacking separation between code generated for every model element and code derived from model information.
+> 
+>	 * The output structure of the code generator is not easily graspable due to embedded code. This issue is also present in other GPL-based generator approaches.
+> 
+>	 * Lack of declarative query language leads to excessive code and reliance on generated model API knowledge.
+> 
+>	 * Code generators require repeated development for input model reading and output code persistence.
+> 
+> * DSLs and ***MOF Model to Text Transformation Language*** (MOFM2T) were developed to generate text from models, improving upon previous Java-based code generators.
+
+## 9.3 CODE GENERATION THROUGH M2T TRANSFORMATION LANGUAGES
+
+This section shows how M2T transformation languages ease code generator development, overviews existing protagonists, and demonstrates how to use one to implement a code generator.
+
+> **Résumé** :
+> 
+> * M2T transformation languages simplify code generator development, and existing languages are discussed.
