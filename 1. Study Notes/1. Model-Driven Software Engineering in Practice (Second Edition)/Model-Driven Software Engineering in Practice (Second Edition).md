@@ -98,17 +98,17 @@ If external traceability requires a persistent trace model, e.g., to see the imp
 > * ATL transformation body consists of ***rules*** and ***helpers***.
 > 
 >	 * ATL has two rule types: ***matched*** and ***lazy***. Matched rules are automatically executed, while lazy rules require explicit calls, providing more control.
-> 
+>	 
 >	 * Rules consist of ***input*** and ***output*** patterns. The input pattern filters source model elements using metaclass types and OCL expressions, while the output pattern defines target model elements and their feature initialization.
-> 
+>	 
 >	 * Helpers are auxiliary functions in ATL code, enabling code factorization. They simulate derived attributes or represent operations, returning values processed within rules.
 > 
 > * ATL transformation execution consists of three sequential phases.
 > 
 >	 * Phase 1 initializes the ***trace model***, storing ***trace links*** between source and target elements. Phase 2 stores each matched rule execution in the trace model.
-> 
+>	 
 >	 * In Phase 2, the ATL transformation engine finds source model element configurations that match source patterns, allocating corresponding target model elements and creating trace links.
-> 
+>	 
 >	 * Phase 3 initializes target model elements by executing bindings defined for target pattern elements. The ***resolveTemp*** operation is used to reference generated target model elements.
 > 
 > * The internal trace model in ATL is crucial for setting target element features and stopping rule execution based on existing trace links.
@@ -118,9 +118,9 @@ If external traceability requires a persistent trace model, e.g., to see the imp
 > * Other transformation approaches exist besides ATL for exogenous transformations.
 > 
 >	 * The OMG’s Query-View-Transformation (QVT) standard includes three languages for model transformations: QVT Relational (declarative, bi-directional), QVT Operational (imperative, uni-directional), and QVT Core (low-level, compiler target). Eclipse provides tool support for all three languages.
-> 
+>	 
 >	 * Triple Graph Grammars (TGG) define correspondence graphs between metamodels, enabling model transformation, synchronization, and consistency checks. TGGs are supported by MOFLON and Eclipse.
-> 
+>	 
 >	 * The Epsilon Transformation Language (ETL) supports out-place model transformations and allows modifying input model elements.
 
 ## 8.3 ENDOGENOUS, IN-PLACE TRANSFORMATIONS
@@ -180,19 +180,19 @@ Graph transformation rules can be applied fully automatically by the graph trans
 > * Advanced graph transformation techniques are discussed.
 > 
 >	 * Alternative notations for defining transformation rules include concrete syntax, condensed graphical notation, and textual concrete syntax, each with varying levels of readability and tool support.
-> 
+>	 
 >	 * Two extensions support deterministic execution of graph transformation systems: rule ***prioritization*** and ***programmable graph transformations*** using control structures like loops and conditional branches.
-> 
+>	 
 >	 * Graph transformation systems have analysis methods, including critical pair computation for non-deterministic systems and termination reasoning.
 > 
 > * Several Eclipse projects support graph transformation technologies for EMF, each with diverse features. The choice of tool depends on the specific transformation problem.
 > 
 >	 * Henshin, successor to EMF Tiger, introduces advanced features like programmable graph transformations and model checking support, with integration with AG for graph transformation techniques.
-> 
+>	 
 >	 * Fujaba uses story diagrams to orchestrate graph transformation rules, with Java used for defining application conditions and assignments.
-> 
+>	 
 >	 * E-Motions is an Eclipse plugin that uses graph transformation rules to specify modeling language behavior, enabling simulation and analysis through Maude.
-> 
+>	 
 >	 * ***ATL Refining***, a new execution mode for ATL, enables in-place transformations using a textual syntax. It updates existing elements, generates new ones, and deletes elements with the ***drop*** keyword.
 
 # CHAPTER 9 Model-to-Text Transformations
@@ -236,9 +236,9 @@ Information can be provided by the modeler using model augmentations, the conven
 > * Three questions are essential for developing a model-based code generator.
 > 
 >	 * The main question is which parts of the code can be automatically generated from models, and if full or partial code generation is possible.
-> 
+>	 
 >	 * Code generators should produce concise, readable code using current high-level languages, APIs, and frameworks to avoid reinventing the wheel. The goal is to generate the least amount of code possible.
-> 
+>	 
 >	 * Code generation requires specifying requirements, including generated parts and target languages, and deciding on the implementation approach.
 > 
 > * Code generation bridges the gap between higher-level models and lower-level artifacts, enabling the benefits of Model-Driven Engineering (MDE).
@@ -288,19 +288,19 @@ DSLs, developed to eliminate disadvantages, generate text from models. This led 
 > * Code generator must support phases illustrated in Figure 9.1.
 > 
 >	 * Models are deserialized from XMI to an in-memory object graph.
-> 
+>	 
 >	 * Model API processes models to generate code.
-> 
+>	 
 >	 * Code is saved in String variables and persisted to files.
 > 
 > * The approach requires only programming language knowledge and model API familiarity, eliminating the need for additional programming skills or tools. However, it also has several drawbacks.
 > 
 >	 * Static and dynamic code are intermingled, lacking separation between code generated for every model element and code derived from model information.
-> 
+>	 
 >	 * The output structure of the code generator is not easily graspable due to embedded code. This issue is also present in other GPL-based generator approaches.
-> 
+>	 
 >	 * Lack of declarative query language leads to excessive code and reliance on generated model API knowledge.
-> 
+>	 
 >	 * Code generators require repeated development for input model reading and output code persistence.
 > 
 > * DSLs and ***MOF Model to Text Transformation Language*** (MOFM2T) were developed to generate text from models, improving upon previous Java-based code generators.
@@ -312,3 +312,97 @@ This section shows how M2T transformation languages ease code generator developm
 > **Résumé** :
 > 
 > * M2T transformation languages simplify code generator development, and existing languages are discussed.
+
+### 9.3.1 BENEFITS OF M2T TRANSFORMATION LANGUAGES
+
+A Java-based code generator was presented in the previous section to illustrate how necessary features must be implemented in GPLs. M2T transformation languages aim to improve code generator development by addressing the drawbacks of GPL-based code generators.
+
+<font style="color: #006ec7 ">Separated static/dynamic code.</font> &emsp; M2T transformation languages separate static and dynamic code using a *template*-based approach. Templates define static text elements shared by all artifacts and dynamic parts filled with case-specific information. Templates contain simple text fragments for the static part and *meta-markers* for the dynamic part. Meta-markers are placeholders interpreted by a *template engine* that processes templates and queries additional data sources (models) to produce dynamic parts. Figure 9.2 summarizes template-based text generation.
+
+![Figure 9.2: Templates, template engines, and source models to produce text.](./09.%20CHAPTER%209%20Model-to-Text%20Transformations/Figures/Figure%209.2.png)
+
+<font style="color: #006ec7 ">Explicit output structure.</font> &emsp; Templates explicitly represent the structure of output text by embedding code for dynamic parts in the static part, reversing the previous Java-based code generator. This mechanism, similar to Java Server Pages (JSPs), allows explicit representation of HTML page structures and embedded Java code, unlike Java Servlets. Explicitly represented output structures lead to more readable and understandable code generation specifications than using String variables. Templates also ease code generator development. For instance, developers can create templates by adding example code and substituting dynamic parts with meta-markers (i) simplifying the abstraction process from concrete code examples to template specifications and (ii) templates have a similar structure and format as the code to be produced, enabling traceability of template effects to the code level.
+
+<font style="color: #006ec7 ">Declarative query language.</font> &emsp; We need to access information stored in models within meta-markers. As presented, OCL is the choice for most M2M transformation languages. Current M2T transformation languages also allow us to use OCL (or a dialect of OCL) for specifying meta-markers. Template languages not tailored to models but supporting various sources use standard programming languages like Java for specifying meta-markers.
+
+<font style="color: #006ec7 ">Reusable base functionality.</font> &emsp; Current M2T transformation languages provide tool support for reading models and serializing text into files using configuration files. This eliminates the need for manual redefinition of model loading and text serialization.
+
+> **Résumé** :
+> 
+> * M2T transformation languages improve code generator development by addressing drawbacks of GPL-based generators.
+> 
+> * M2T transformation languages use a ***template***-based approach to separate static and dynamic code. Templates contain static text elements and ***meta-markers***, which are interpreted by a ***template engine*** to generate dynamic parts from models.
+> 
+> * Templates explicitly represent output text structure, embedding dynamic code within static text. This approach, similar to Java Server Pages (JSPs), enhances code generator readability and development ease.
+> 
+> * OCL is used to access model information in M2M transformation languages, while other template languages use standard programming languages like Java.
+> 
+> * M2T transformation languages offer tool support for model reading and text serialization, eliminating manual development.
+
+### 9.3.2 TEMPLATE-BASED TRANSFORMATION LANGUAGES: AN OVERVIEW
+
+Various template-based languages can be used to generate text from models.
+
+* **XSLT**: The XMI serializations of the models can be processed with XSLT, the W3C standard for transforming XML documents into arbitrary text documents. However, the code generation scripts require implementing based on the XMI serialization, which necessitates knowledge of how models are encoded as XML files. Therefore, approaches directly operating on the model level are more favorable.
+
+* ** JET**: The Java Emitter Template (JET) project was one of the first approaches for developing code generation for EMF-based models. JET is not limited to EMF-based models. It transforms every Java-based object to text. JET provides a JSP-like syntax for writing templates for M2T transformations. Arbitrary Java expressions can be embedded in JET templates. JET templates are transformed to pure Java code for execution. However, JET lacks a dedicated query language for models.
+
+* **Xtend**: Xtend, a modern programming language, is mainly based on Java but offers additional features. It supports code generation with template expressions and functional programming, which is beneficial for querying models (many OCL iterator-based operations are available out-of-the-box).
+
+* **MOFScript**: This project offers another M2T transformation language with features similar to Xtend. MOFScript, a candidate proposal for the OMG standardization effort, provides a standardized language for M2T transformations. It’s available as an Eclipse plug-in and supports EMF-based models.
+
+* **Acceleo**: This project aims to provide a practical version of the OMG’s M2T transformation standard for EMF-based models. It supports full OCL querying and has mature tool support, useful in industry.
+
+> **Résumé** :
+> 
+> * Template-based languages generate text from models.
+> 
+>	 * XSLT can process XMI serializations of models, but model-level approaches are more favorable.
+>	 
+>	 * Java Emitter Template (JET) enables code generation for EMF-based models and any Java-based object. It uses a JSP-like syntax for templates, allowing arbitrary Java expressions.
+>	 
+>	 * Xtend7 is a Java-based programming language with additional features like code generation and functional programming.
+>	 
+>	 * MOFScript is an M2T transformation language similar to Xtend, developed as an OMG standardization proposal. It is available as an Eclipse plug-in and supports EMF-based models.
+>	 
+>	 * Acceleo is a pragmatic version of the OMG M2T transformation standard for EMF-based models. It provides full OCL support and mature tool support.
+
+### 9.3.3 ACCELEO: AN IMPLEMENTATION OF THE M2T TRANSFORMATION STANDARD
+
+Acceleo is selected as a protagonist to demonstrate M2T language transformation due to its practical relevance and mature tool support. Other M2T transformation languages like Xtend and MOFScript also support Acceleo’s language features.
+
+Acceleo offers a template-based language for defining code generation templates. It supports OCL and additional operations for working with text-based documents, including advanced string manipulation functions. Acceleo includes powerful tooling such as an editor with syntax highlighting, error detection, code completion, refactoring, debugger, profiler, and a traceability API for model element tracing to generated code and vice versa.
+
+Before defining templates in Acceleo, a container module is created to hold them. This module imports the metamodel definition for the templates, making them aware of the metamodel classes that can be used as template types. Templates in Acceleo are always defined for a specific metamodel class. In addition to the model element type, a pre-condition can be defined, similar to a filter condition in ATL, to apply a template only to model elements with a specific type and values.
+
+The Acceleo template language has several meta-markers, called tags in Acceleo, that are also common in other M2T transformation languages.
+
+* **Files**: To generate code, files must be opened, filled, and closed, as in the Java-based code generator. In Acceleo, a special `file` tag prints the content between its start and end. The tag’s path and file name are defined by its attributes.
+
+* **Control Structures**: There are tags for defining control structures like loops (`for` iterating over collections of elements) and conditional branches (`if`).
+
+* **Queries**: OCL queries, similar to ATL helpers, can be defined with a `query` tag. They can be called throughout the template to factor out recurring code.
+
+* **Expressions**: Expressions are used to compute values for the dynamic parts of the output text. They can also call other templates to include their generated code in the caller template’s code. Calling other templates is similar to method calls in Java.
+
+* **Protected Areas**: M2T languages support projects with partial code generation. Special protection is needed to safeguard manually added code from file modifications in subsequent generator runs. Acceleo’s protected tag supports protected areas, which mark sections in generated code that shouldn’t be overridden again. These sections usually contain manually written code.
+
+> **Résumé** :
+> 
+> * Acceleo is used to demonstrate M2T transformation languages due to its practical relevance and mature tool support.
+> 
+> * Acceleo is a template-based language for code generation with a powerful API, tooling, and traceability.
+> 
+> * Acceleo templates require a module as a container, importing the metamodel definition. Templates are defined for specific metamodel classes, with optional pre-conditions for filtering model elements.
+> 
+> * Acceleo template language uses tags, common in M2T transformation languages.
+> 
+>	 * Acceleo uses a special `file` tag to print content between start and end tags for a given file, with path and filename defined by attributes.
+>	 
+>	 * Control structures include loops for iteration and conditional branches for navigation.
+>	 
+>	 * OCL queries, similar to ATL helpers, can be defined and called throughout templates.
+>	 
+>	 * Expressions compute values for dynamic output text and call other templates, similar to Java method calls.
+>	 
+>	 * Protected areas in M2T languages safeguard manually added code from subsequent generator runs. Acceleo supports this through the protected tag.
