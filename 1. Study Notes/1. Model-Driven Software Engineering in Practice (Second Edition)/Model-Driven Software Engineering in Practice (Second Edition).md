@@ -406,3 +406,39 @@ The Acceleo template language has several meta-markers, called tags in Acceleo, 
 >	 * Expressions compute values for dynamic output text and call other templates, similar to Java method calls.
 >	 
 >	 * Protected areas in M2T languages safeguard manually added code from subsequent generator runs. Acceleo supports this through the protected tag.
+
+### 9.4 MASTERING CODE GENERATION
+
+To address the complexity of model-based code generators, several advanced techniques are briefly described below.
+
+&emsp; **Abstracting templates.** Abstracting code generation templates from concrete reference examples is a proven approach to ensure that generated code is accepted by developers, especially when only partial code generation is applied. Acceleo offers the possibility to refactor a concrete reference example to a template, with several refactoring operations to substitute example code with tags. For instance, a concrete Java class name can be refactored to an expression that queries the name value from a model element. This tool support allows for systematic extraction of templates from example code, ensuring developers are familiar with the produced output.
+
+&emsp; **Reusing templates.** Current M2T transformation languages offer features for structuring and reusing transformation logic. Templates can be nested in an inheritance tree, enabling polymorphic template calls based on model element type. This is useful in metamodels where inheritance is used to reuse features. Templates can be reused and extended for subclasses defined for superclasses to avoid duplicated code. M2T languages also support aspects for defining and weaving cross-cutting concerns to code generators or refining complete transformation modules by overriding templates instead of extending them by inheritance.
+
+&emsp; **Step-by-step generation.** Dividing a code generation process into several steps by chaining transformations is useful when there’s a significant gap between the model and code levels. This leads to verbose templates that hide the final output structure. Applying the divide-and-conquer principle with transformation chains (cf. Section 8.4) results in more readable, reusable, and maintainable components. For instance, if a code generator for flat state machines exists, an M2M transformation from nested state machines to flat state machines can be provided for reuse.
+
+&emsp; **Separating transformation logic from text.** Refactor complex computations, such as queries on the input model or complex String computations, into queries or libraries that can be imported in templates when needed. This makes the final output structure more visible in templates and previous code reusable in other templates or code generators.
+
+&emsp; **Mastering code layout.** The code layout is determined by the template. It can be challenging to produce the desired layout when several loops and conditions are in the template. Xtend allows us to have a code beautifier as a postprocessing unit for the code generator output. Besides using a code beautifier, there are language features in M2T languages that control the actual layout of the output, such as operators for ignoring line breaks in templates and special signs produced in loops.
+
+&emsp; **Be aware of model/code synchronizing problems.** Protected areas are helpful for partial code generation, but manually added code may not be placed correctly in the next generator run. Especially when using class-method names as protected area IDs, renaming refactorings on the class and method on the model level makes synchronization impossible. Such refactorings result in a new Java file with a « new » operation, requiring manual copying, addition, and adaptation of the implementation code. Some M2T transformation frameworks, like Acceleo, report if manually added code cannot be merged with the new code. In such cases, the code generator’s log file summarizes the unintegrated lines of code.
+
+Be cautious when refactoring a model with partial code generation. One approach is to execute model-level refactorings and corresponding code-level refactorings, then run the code generator after propagation. Another approach is to use immutable internal IDs of model elements for protected area IDs. The former approach requires more effort to build model/code synchronization support, but it can automatically adapt manually added code to the new model version. The latter approach doesn’t require additional effort.
+
+> **Résumé** :
+> 
+> * Advanced techniques can be used to manage complexity when implementing model-based code generators.
+> 
+>	 * Acceleo offers a tool to refactor concrete code examples into templates, ensuring generated code is accepted by developers. This approach is especially useful for partial code generation.
+>	 
+>	 * M2T transformation languages support template reuse through inheritance, aspects, and template overriding, enabling code generation with cross-cutting concerns and module refinement.
+>	 
+>	 * Dividing code generation into steps using transformation chains improves readability, reusability, and maintainability. This approach, exemplified by a nested state machine generator, allows for modular development and code reuse.
+>	 
+>	 * Complex computations should be refactored into queries or libraries for better visibility and reusability in templates and code generators.
+>	 
+>	 * Code layout in M2T languages is determined by templates, with challenges arising from complex loops and conditions. Language features like operators for ignoring line breaks and separating elements aid in controlling output layout.
+>	 
+>	 * Model/code synchronization issues arise when manually added code cannot be placed correctly in newly generated code, especially after class and method renaming. This can lead to manual code copying and adaptation.
+> 
+> * Refactoring models with partial code generation requires careful consideration. Two approaches are proposed: synchronizing model and code refactorings or using immutable model element IDs for protected areas.
